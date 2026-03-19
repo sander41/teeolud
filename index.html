@@ -17,13 +17,14 @@
     --danger: #c0392b;
     --text: #1a1d2e;
     --muted: #7a82a0;
-    --card: #f9fafc;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  /* Desktop: 2-col grid, header spans full width */
   body {
+    font-family: Arial, sans-serif;
     background: var(--bg);
     color: var(--text);
-    font-family: Arial, sans-serif;
     height: 100vh;
     display: grid;
     grid-template-columns: 380px 1fr;
@@ -32,175 +33,118 @@
   }
   header {
     grid-column: 1 / -1;
+    grid-row: 1;
     background: var(--panel);
     border-bottom: 1px solid var(--border);
     display: flex;
     align-items: center;
     padding: 0 24px;
     gap: 16px;
+    z-index: 10;
   }
-  .logo {
-    font-family: Arial, sans-serif;
-    font-weight: 800;
-    font-size: 22px;
-    letter-spacing: -0.5px;
-    color: var(--accent);
+  /* Map is first in DOM after header — place explicitly col 2 on desktop */
+  #map {
+    grid-column: 2;
+    grid-row: 2;
+    width: 100%;
+    height: 100%;
   }
-  .logo span { color: var(--text); opacity: 0.4; }
-  .tagline { font-size: 11px; color: var(--muted); letter-spacing: 0.05em; }
-  .status-dot {
-    margin-left: auto;
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: var(--accent);
-    box-shadow: 0 0 8px rgba(42,125,63,0.5);
-    animation: pulse 2s infinite;
-  }
-  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
-
-  /* Sidebar */
+  /* Sidebar placed col 1 on desktop */
   #sidebar {
+    grid-column: 1;
+    grid-row: 2;
     background: var(--panel);
     border-right: 1px solid var(--border);
     display: flex;
     flex-direction: column;
     overflow: hidden;
   }
-  .search-section {
-    padding: 20px;
-    border-bottom: 1px solid var(--border);
+
+  .logo { font-weight: 800; font-size: 22px; color: var(--accent); }
+  .tagline { font-size: 11px; color: var(--muted); }
+  .status-dot {
+    margin-left: auto;
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 8px rgba(42,125,63,0.5);
+    animation: pulse 2s infinite;
   }
-  .field-label {
-    font-size: 10px;
-    letter-spacing: 0.12em;
-    color: var(--muted);
-    text-transform: uppercase;
-    margin-bottom: 6px;
-  }
-  .input-row {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-bottom: 14px;
-  }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+  .search-section { padding: 20px; border-bottom: 1px solid var(--border); flex-shrink: 0; }
+  .field-label { font-size: 10px; letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; margin-bottom: 6px; }
+  .input-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 14px; }
   .route-input {
-    background: var(--bg);
-    border: 1px solid var(--border);
-    color: var(--text);
-    padding: 10px 14px;
-    font-family: Arial, sans-serif;
-    font-size: 13px;
-    border-radius: 6px;
-    outline: none;
-    transition: border-color 0.2s;
-    width: 100%;
+    background: var(--bg); border: 1px solid var(--border); color: var(--text);
+    padding: 10px 14px; font-family: Arial, sans-serif; font-size: 13px;
+    border-radius: 6px; outline: none; transition: border-color 0.2s; width: 100%;
   }
   .route-input:focus { border-color: var(--accent); }
   .route-input::placeholder { color: var(--muted); }
   .go-btn {
-    background: var(--accent);
-    color: #ffffff;
-    border: none;
-    padding: 11px 20px;
-    font-family: Arial, sans-serif;
-    font-weight: 700;
-    font-size: 14px;
-    border-radius: 6px;
-    cursor: pointer;
-    letter-spacing: 0.03em;
+    background: var(--accent); color: #fff; border: none;
+    padding: 11px 20px; font-family: Arial, sans-serif; font-weight: 700;
+    font-size: 14px; border-radius: 6px; cursor: pointer; width: 100%;
     transition: opacity 0.2s, transform 0.1s;
-    width: 100%;
   }
   .go-btn:hover { opacity: 0.88; }
   .go-btn:active { transform: scale(0.98); }
   .go-btn:disabled { opacity: 0.4; cursor: not-allowed; }
-  .ors-key-row {
-    margin-top: 10px;
-  }
 
-  /* Stations list */
-  #stations-panel {
-    flex: 1;
-    overflow-y: auto;
-    padding: 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  .route-summary {
+    padding: 10px 16px; background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    display: none; gap: 16px; font-size: 11px;
+    color: var(--muted); flex-shrink: 0; flex-wrap: wrap;
   }
+  .route-summary.visible { display: flex; }
+  .route-summary strong { color: var(--text); font-weight: 600; }
+
+  #stations-panel { flex: 1; overflow-y: auto; padding: 14px; }
   #stations-panel::-webkit-scrollbar { width: 4px; }
-  #stations-panel::-webkit-scrollbar-track { background: transparent; }
   #stations-panel::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
 
   .empty-state {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    height: 100%;
-    color: var(--muted);
-    font-size: 12px;
-    text-align: center;
-    line-height: 1.7;
+    display: flex; flex-direction: column; align-items: center;
+    justify-content: center; gap: 12px; height: 100%;
+    color: var(--muted); font-size: 12px; text-align: center; line-height: 1.7;
   }
   .empty-icon { font-size: 36px; opacity: 0.3; }
-
   .section-header {
-    font-size: 10px;
-    letter-spacing: 0.12em;
-    color: var(--muted);
-    text-transform: uppercase;
-    padding: 4px 0 8px;
-    border-bottom: 1px solid var(--border);
-    margin-bottom: 4px;
+    font-size: 10px; letter-spacing: 0.1em; color: var(--muted);
+    text-transform: uppercase; padding: 4px 0 8px;
+    border-bottom: 1px solid var(--border); margin-bottom: 6px;
   }
 
-  /* Station table */
-  .stations-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 12px;
-  }
+  .stations-table { width: 100%; border-collapse: collapse; font-size: 12px; table-layout: fixed; }
+  .stations-table col:nth-child(1) { width: 36%; }
+  .stations-table col:nth-child(2) { width: 18%; }
+  .stations-table col:nth-child(3) { width: 18%; }
+  .stations-table col:nth-child(4) { width: 28%; }
   .stations-table thead th {
-    font-size: 9px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--muted);
-    text-align: left;
-    padding: 6px 8px;
+    font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--muted); text-align: left; padding: 6px 6px;
     border-bottom: 2px solid var(--border);
-    white-space: nowrap;
   }
-  .stations-table tbody tr {
-    border-bottom: 1px solid var(--border);
-    cursor: pointer;
-    transition: background 0.15s;
-  }
-  .stations-table tbody tr:hover { background: #eef1f9; }
+  .stations-table tbody tr { border-bottom: 1px solid var(--border); cursor: pointer; transition: background 0.15s; }
+  .stations-table tbody tr:hover  { background: #eef1f9; }
   .stations-table tbody tr.active { background: #e6f0ea; }
-  .stations-table tbody tr.slippery {
-    background: #fdecea;
-  }
-  .stations-table tbody tr.slippery:hover { background: #fad6d3; }
+  .stations-table tbody tr.slippery        { background: #fdecea; }
+  .stations-table tbody tr.slippery:hover  { background: #fad6d3; }
   .stations-table tbody tr.slippery.active { background: #fad6d3; }
-  .stations-table td {
-    padding: 9px 8px;
-    vertical-align: middle;
-  }
-  .td-name { font-weight: 500; color: var(--text); }
-  .td-road { font-size: 10px; color: var(--muted); }
-  .td-temp { font-weight: 500; white-space: nowrap; }
+  .stations-table td { padding: 8px 6px; vertical-align: middle; word-break: break-word; }
+
+  .td-name  { font-weight: 500; color: var(--text); }
+  .td-road  { font-size: 10px; color: var(--muted); margin-top: 1px; }
+  .td-temp  { font-weight: 500; white-space: nowrap; }
+  .td-temp.ok     { color: var(--accent); }
   .td-temp.warn   { color: var(--warn); }
   .td-temp.orange { color: var(--orange); }
   .td-temp.danger { color: var(--danger); }
-  .td-temp.ok     { color: var(--accent); }
+
   .surface-pill {
-    display: inline-block;
-    padding: 2px 7px;
-    border-radius: 3px;
-    font-size: 10px;
-    font-weight: 500;
-    white-space: nowrap;
+    display: inline-block; padding: 2px 6px; border-radius: 3px;
+    font-size: 10px; font-weight: 500; word-break: break-word;
   }
   .pill-ok      { background: rgba(42,125,63,0.12);   color: var(--accent); }
   .pill-warn    { background: rgba(196,122,0,0.12);   color: var(--warn); }
@@ -209,87 +153,63 @@
   .pill-unknown { background: rgba(122,130,160,0.12); color: var(--muted); }
 
   .next-chip {
-    display: inline-block;
-    background: var(--accent);
-    color: #fff;
-    font-size: 8px;
-    font-family: Arial, sans-serif;
-    font-weight: 700;
-    padding: 1px 5px;
-    border-radius: 2px;
-    letter-spacing: 0.08em;
-    vertical-align: middle;
-    margin-right: 4px;
+    display: inline-block; background: var(--accent); color: #fff;
+    font-size: 8px; font-weight: 700; padding: 1px 5px; border-radius: 2px;
+    letter-spacing: 0.06em; vertical-align: middle; margin-right: 3px;
   }
-  .slippery-flag {
-    display: inline-block;
-    font-size: 13px;
-    vertical-align: middle;
-    margin-left: 4px;
-  }
+  .slippery-flag { font-size: 12px; vertical-align: middle; margin-left: 3px; }
 
-  /* Map */
-  #map {
-    width: 100%;
-    height: 100%;
-  }
-  .leaflet-container { background: #0d0f14; }
-
-  /* Loading overlay */
   #loading {
-    position: fixed;
-    inset: 0;
-    background: rgba(244,246,250,0.88);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
-    z-index: 9999;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.3s;
+    position: fixed; inset: 0; background: rgba(244,246,250,0.88);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 16px; z-index: 9999; pointer-events: none; opacity: 0; transition: opacity 0.3s;
   }
   #loading.show { opacity: 1; pointer-events: all; }
   .spinner {
-    width: 40px; height: 40px;
-    border: 3px solid var(--border);
-    border-top-color: var(--accent);
-    border-radius: 50%;
+    width: 40px; height: 40px; border: 3px solid var(--border);
+    border-top-color: var(--accent); border-radius: 50%;
     animation: spin 0.8s linear infinite;
   }
   @keyframes spin { to { transform: rotate(360deg); } }
   .loading-text { font-size: 13px; color: var(--muted); }
 
-  /* Error toast */
   #toast {
-    position: fixed;
-    bottom: 24px;
-    left: 50%;
+    position: fixed; bottom: 24px; left: 50%;
     transform: translateX(-50%) translateY(80px);
-    background: var(--danger);
-    color: white;
-    padding: 10px 20px;
-    border-radius: 6px;
-    font-size: 13px;
-    z-index: 9999;
-    transition: transform 0.3s;
-    max-width: 380px;
-    text-align: center;
+    background: var(--danger); color: white; padding: 10px 20px;
+    border-radius: 6px; font-size: 13px; z-index: 9999;
+    transition: transform 0.3s; max-width: 90vw; text-align: center;
   }
   #toast.show { transform: translateX(-50%) translateY(0); }
 
-  .route-summary {
-    padding: 12px 16px;
-    background: var(--bg);
-    border-bottom: 1px solid var(--border);
-    display: none;
-    gap: 16px;
-    font-size: 11px;
-    color: var(--muted);
+  /* Mobile (≤700px): header | map | sidebar stacked, each in its own row */
+  @media (max-width: 700px) {
+    body {
+      grid-template-columns: 1fr;
+      grid-template-rows: 50px 240px 1fr;
+      height: 100dvh;
+      overflow: hidden;
+    }
+    header  { grid-column: 1; grid-row: 1; padding: 0 14px; }
+    #map    { grid-column: 1; grid-row: 2; height: 100%; }
+    #sidebar {
+      grid-column: 1; grid-row: 3;
+      border-right: none; border-top: 1px solid var(--border);
+      overflow-y: auto; height: 100%;
+    }
+    .tagline { display: none; }
+    .logo { font-size: 18px; }
+    .search-section { padding: 12px 14px; }
+    .input-row { gap: 8px; margin-bottom: 10px; }
+    .route-input { font-size: 14px; }
+    .go-btn { font-size: 14px; padding: 11px; }
+    .route-summary { padding: 8px 14px; }
+    #stations-panel { padding: 10px 14px; overflow-y: visible; }
+    .stations-table { font-size: 11px; }
+    .stations-table thead th { padding: 5px 5px; font-size: 8px; }
+    .stations-table td { padding: 7px 5px; }
+    .surface-pill { font-size: 9px; padding: 1px 4px; }
   }
-  .route-summary.visible { display: flex; }
-  .route-summary strong { color: var(--text); font-weight: 500; }
 </style>
 </head>
 <body>
@@ -302,405 +222,288 @@
   <div class="status-dot" title="Reaalajaandmed"></div>
 </header>
 
+<!-- Map FIRST in DOM so explicit grid-row placement works cleanly -->
+<div id="map"></div>
+
 <div id="sidebar">
   <div class="search-section">
     <input type="hidden" id="ors-key" value="eyJvcmciOiI1YjNjZTM1OTc4NTExMTAwMDFjZjYyNDgiLCJpZCI6ImNkYWIxN2FiYTI4MzRhYTRhNWRlYWJiMWZmOWYzYmIzIiwiaCI6Im11cm11cjY0In0=" />
     <div class="field-label">Marsruut</div>
     <div class="input-row">
       <input type="text" id="origin" class="route-input" placeholder="Alguspunkt, nt Tallinn" value="Tallinn" />
-      <input type="text" id="dest" class="route-input" placeholder="Sihtpunkt, nt Tartu" value="Tartu" />
+      <input type="text" id="dest"   class="route-input" placeholder="Sihtpunkt, nt Tartu"   value="Tartu" />
     </div>
-    <button class="go-btn" id="go-btn">▶ PLANEERI MARSRUUT</button>
+    <button class="go-btn" id="go-btn">&#9654; PLANEERI MARSRUUT</button>
   </div>
 
   <div class="route-summary" id="route-summary">
-    <span>📍 <strong id="sum-dist">—</strong></span>
-    <span>⏱ <strong id="sum-time">—</strong></span>
-    <span>🌦 <strong id="sum-stations">—</strong> jaama</span>
+    <span>&#128205; <strong id="sum-dist">&#8212;</strong></span>
+    <span>&#9201; <strong id="sum-time">&#8212;</strong></span>
+    <span>&#127750; <strong id="sum-stations">&#8212;</strong> jaama</span>
   </div>
 
   <div id="stations-panel">
     <div class="empty-state">
-      <div class="empty-icon">🌧</div>
-      <div>Sisesta marsruut, et näha<br>teeolujaamasid sinu teel.</div>
-      <div style="font-size:10px;opacity:0.6">Andmed: tarktee.ee · Uuendatakse iga 15 min</div>
+      <div class="empty-icon">&#127783;</div>
+      <div>Sisesta marsruut, et n&#228;ha<br>teeolujaamasid sinu teel.</div>
+      <div style="font-size:10px;opacity:0.6">Andmed: tarktee.ee &middot; Uuendatakse iga 15 min</div>
     </div>
   </div>
 </div>
 
-<div id="map"></div>
-
-<div id="loading"><div class="spinner"></div><div class="loading-text" id="loading-text">Laen…</div></div>
+<div id="loading"><div class="spinner"></div><div class="loading-text" id="loading-text">Laen&#8230;</div></div>
 <div id="toast"></div>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-// ─── Tarktee EPSG:3301 → WGS84 conversion ───────────────────────────────────
-// Estonia Lambert Conformal Conic projection parameters
+
+// ─── EPSG:3301 to WGS84 ──────────────────────────────────────────────────────
 function lcc3301ToWgs84(x, y) {
-  // Lambert Conformal Conic -> geographic (GRS80 ellipsoid)
-  const a = 6378137.0, f = 1/298.257222101;
-  const b = a * (1 - f);
-  const e2 = 1 - (b*b)/(a*a);
-  const e = Math.sqrt(e2);
-  const phi1 = 58.0 * Math.PI/180;
-  const phi2 = 59.333333333 * Math.PI/180;
-  const phi0 = 57.517553 * Math.PI/180;
-  const lam0 = 24.0 * Math.PI/180;
-  const FE = 500000, FN = 6375000;
-
-  function m(phi) {
-    return Math.cos(phi) / Math.sqrt(1 - e2 * Math.sin(phi)**2);
-  }
-  function t(phi) {
-    const sp = Math.sin(phi);
-    return Math.tan(Math.PI/4 - phi/2) / ((1 - e*sp)/(1 + e*sp))**(e/2);
-  }
-  const m1=m(phi1), m2=m(phi2), t1=t(phi1), t2=t(phi2), t0=t(phi0);
-  const n = (Math.log(m1)-Math.log(m2))/(Math.log(t1)-Math.log(t2));
-  const F = m1/(n*t1**n);
-  const r0 = a*F*t0**n;
-
-  const xp = x - FE, yp = y - FN;
-  const r = Math.sign(n)*Math.sqrt(xp**2 + (r0-yp)**2);
-  const theta = Math.atan2(xp, r0-yp);
-  const t_ = (r/(a*F))**(1/n);
-
-  let phi = Math.PI/2 - 2*Math.atan(t_);
-  for(let i=0;i<10;i++) {
-    const sp = Math.sin(phi);
-    phi = Math.PI/2 - 2*Math.atan(t_*((1-e*sp)/(1+e*sp))**(e/2));
-  }
-  const lam = theta/n + lam0;
-  return [phi * 180/Math.PI, lam * 180/Math.PI];
+  const a=6378137.0, f=1/298.257222101;
+  const b=a*(1-f), e2=1-(b*b)/(a*a), e=Math.sqrt(e2);
+  const phi1=58.0*Math.PI/180, phi2=59.333333333*Math.PI/180;
+  const phi0=57.517553*Math.PI/180, lam0=24.0*Math.PI/180;
+  const FE=500000, FN=6375000;
+  function m(p){ return Math.cos(p)/Math.sqrt(1-e2*Math.sin(p)**2); }
+  function t(p){ const s=Math.sin(p); return Math.tan(Math.PI/4-p/2)/((1-e*s)/(1+e*s))**(e/2); }
+  const m1=m(phi1),m2=m(phi2),t1=t(phi1),t2=t(phi2),t0=t(phi0);
+  const n=(Math.log(m1)-Math.log(m2))/(Math.log(t1)-Math.log(t2));
+  const F=m1/(n*t1**n), r0=a*F*t0**n;
+  const xp=x-FE, yp=y-FN;
+  const r=Math.sign(n)*Math.sqrt(xp**2+(r0-yp)**2);
+  const theta=Math.atan2(xp,r0-yp);
+  const t_=(r/(a*F))**(1/n);
+  let phi=Math.PI/2-2*Math.atan(t_);
+  for(let i=0;i<10;i++){const s=Math.sin(phi);phi=Math.PI/2-2*Math.atan(t_*((1-e*s)/(1+e*s))**(e/2));}
+  return [phi*180/Math.PI,(theta/n+lam0)*180/Math.PI];
 }
 
-// ─── Map setup ───────────────────────────────────────────────────────────────
-const map = L.map('map', { zoomControl: true, attributionControl: true });
+// ─── Map ─────────────────────────────────────────────────────────────────────
+const map = L.map('map', {zoomControl:true});
 L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-  attribution: '© OpenStreetMap © CARTO',
-  maxZoom: 17
+  attribution:'&copy; OpenStreetMap &copy; CARTO', maxZoom:17
 }).addTo(map);
 map.setView([58.8, 25.5], 7);
 
 let routeLayer = null;
 let stationMarkers = [];
-let allStations = [];
 
-// ─── Custom markers ──────────────────────────────────────────────────────────
 function stationIcon(color) {
   return L.divIcon({
-    className: '',
-    html: `<div style="width:13px;height:13px;border-radius:50%;background:${color};border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,0.25)"></div>`,
-    iconSize: [13,13], iconAnchor: [6,6]
+    className:'',
+    html:`<div style="width:13px;height:13px;border-radius:50%;background:${color};border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,0.25)"></div>`,
+    iconSize:[13,13], iconAnchor:[6,6]
   });
 }
 
 // ─── ORS Geocode ─────────────────────────────────────────────────────────────
-async function geocode(text, apiKey) {
-  const url = `https://api.openrouteservice.org/geocode/search?api_key=${apiKey}&text=${encodeURIComponent(text)}&boundary.country=EE&size=1`;
-  const r = await fetch(url);
-  if (!r.ok) throw new Error('Geocoding failed for: ' + text);
+async function geocode(text, key) {
+  const r = await fetch(`https://api.openrouteservice.org/geocode/search?api_key=${key}&text=${encodeURIComponent(text)}&boundary.country=EE&size=1`);
+  if(!r.ok) throw new Error('Geokodeerimine ebaonnestus: ' + text);
   const d = await r.json();
-  if (!d.features?.length) throw new Error('Location not found: ' + text);
-  return d.features[0].geometry.coordinates; // [lng, lat]
+  if(!d.features?.length) throw new Error('Asukohta ei leitud: ' + text);
+  return d.features[0].geometry.coordinates;
 }
 
 // ─── ORS Directions ──────────────────────────────────────────────────────────
-async function getRoute(originCoord, destCoord, apiKey) {
-  const url = `https://api.openrouteservice.org/v2/directions/driving-car/geojson`;
-  const r = await fetch(url, {
-    method: 'POST',
-    headers: { 'Authorization': apiKey, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ coordinates: [originCoord, destCoord] })
+async function getRoute(oCoord, dCoord, key) {
+  const r = await fetch('https://api.openrouteservice.org/v2/directions/driving-car/geojson', {
+    method:'POST',
+    headers:{'Authorization':key,'Content-Type':'application/json'},
+    body:JSON.stringify({coordinates:[oCoord,dCoord]})
   });
-  if (!r.ok) {
-    const err = await r.json().catch(()=>({}));
-    throw new Error(err.error?.message || 'Route calculation failed');
-  }
+  if(!r.ok){const e=await r.json().catch(()=>({}));throw new Error(e.error?.message||'Marsruudi arvutamine ebaonnestus');}
   return r.json();
 }
 
-// ─── Tarktee weather stations ────────────────────────────────────────────────
+// ─── Tarktee ─────────────────────────────────────────────────────────────────
 async function fetchWeatherStations() {
-  const url = 'https://tarktee.ee/tarktee/rest/services/road_weather_stations/MapServer/0/query?where=1%3D1&outFields=*&f=json&resultRecordCount=1000';
+  const url='https://tarktee.ee/tarktee/rest/services/road_weather_stations/MapServer/0/query?where=1%3D1&outFields=*&f=json&resultRecordCount=1000';
   const r = await fetch(url);
-  if (!r.ok) throw new Error('Could not fetch Tarktee data (HTTP ' + r.status + ')');
+  if(!r.ok) throw new Error('Tarktee andmete laadimine ebaonnestus (HTTP '+r.status+')');
   const data = await r.json();
-  if (!data.features?.length) throw new Error('No station data returned from Tarktee');
+  if(!data.features?.length) throw new Error('Tarktee ei tagastanud andmeid');
   return data;
 }
 
-// ─── Point-to-segment distance ───────────────────────────────────────────────
-function ptSegDist(px, py, ax, ay, bx, by) {
-  const dx=bx-ax, dy=by-ay;
+// ─── Geometry ────────────────────────────────────────────────────────────────
+function ptSegDist(px,py,ax,ay,bx,by){
+  const dx=bx-ax,dy=by-ay;
   if(dx===0&&dy===0) return Math.hypot(px-ax,py-ay);
-  const t = Math.max(0,Math.min(1,((px-ax)*dx+(py-ay)*dy)/(dx*dx+dy*dy)));
-  return Math.hypot(px-ax-t*dx, py-ay-t*dy);
+  const t=Math.max(0,Math.min(1,((px-ax)*dx+(py-ay)*dy)/(dx*dx+dy*dy)));
+  return Math.hypot(px-ax-t*dx,py-ay-t*dy);
 }
-
-// Degrees to rough meters (at ~59°N)
-const LAT_M = 111320;
-const LNG_M = 111320 * Math.cos(58.8 * Math.PI/180);
-
-function stationDistToRoute(sLat, sLng, routeCoords) {
-  let minDist = Infinity;
-  let minIdx = 0;
-  for(let i=0;i<routeCoords.length-1;i++) {
-    const [aLng,aLat]=routeCoords[i], [bLng,bLat]=routeCoords[i+1];
-    const d = ptSegDist(
-      sLng*LNG_M, sLat*LAT_M,
-      aLng*LNG_M, aLat*LAT_M,
-      bLng*LNG_M, bLat*LAT_M
-    );
+const LAT_M=111320, LNG_M=111320*Math.cos(58.8*Math.PI/180);
+function stationDistToRoute(sLat,sLng,coords){
+  let minDist=Infinity,minIdx=0;
+  for(let i=0;i<coords.length-1;i++){
+    const [aLng,aLat]=coords[i],[bLng,bLat]=coords[i+1];
+    const d=ptSegDist(sLng*LNG_M,sLat*LAT_M,aLng*LNG_M,aLat*LAT_M,bLng*LNG_M,bLat*LAT_M);
     if(d<minDist){minDist=d;minIdx=i;}
   }
-  return { distM: minDist, routeIdx: minIdx };
+  return {distM:minDist,routeIdx:minIdx};
 }
 
-// ─── Condition helpers ────────────────────────────────────────────────────────
-function surfaceLabel(val) {
-  if(val===null||val===undefined||val==='') return {text:'Teadmata', cls:'unknown'};
-  switch(String(val).toUpperCase()) {
-    // Green — safe
-    case 'DRY':         return {text:'Kuiv',          cls:'ok'};
-    // Yellow — caution
-    case 'MOIST':       return {text:'Niiske',         cls:'warn'};
-    case 'WET':         return {text:'Märg',           cls:'warn'};
-    // Orange — drive carefully
-    case 'FROST':       return {text:'Härmatis',       cls:'orange'};
-    case 'PARTLY_ICY':  return {text:'Osaliselt jäine',cls:'orange'};
-    case 'SLUSH':       return {text:'Sulalumi',       cls:'orange'};
-    case 'LOOSE_SNOW':  return {text:'Lahti lumi',     cls:'orange'};
-    case 'SNOWY':       return {text:'Lumine',         cls:'orange'};
-    // Red — dangerous
-    case 'ICY':         return {text:'Jäine',          cls:'danger'};
-    case 'ICE':         return {text:'Jää',            cls:'danger'};
-    case 'BLACK_ICE':   return {text:'Must jää',       cls:'danger'};
-    case 'SNOW':        return {text:'Lumi',           cls:'danger'};
-    case 'PACKED_SNOW': return {text:'Tallatud lumi',  cls:'danger'};
-    case 'ICE_SNOW':    return {text:'Lumi/jää',       cls:'danger'};
-    default:
-      return {text: val.charAt(0).toUpperCase() + val.slice(1).toLowerCase().replace(/_/g,' '), cls:'unknown'};
+// ─── Conditions ──────────────────────────────────────────────────────────────
+function surfaceLabel(val){
+  if(val===null||val===undefined||val==='') return {text:'Teadmata',cls:'unknown'};
+  switch(String(val).toUpperCase()){
+    case 'DRY':                return {text:'Kuiv',         cls:'ok'};
+    case 'MOIST':              return {text:'Niiske',       cls:'warn'};
+    case 'WET':                return {text:'M\u00e4rg',   cls:'warn'};
+    case 'MOIST_AND_CHEMICAL': return {text:'Soolaniiske',  cls:'warn'};
+    case 'WET_AND_CHEMICAL':   return {text:'Soolam\u00e4rg', cls:'warn'};
+    default:{const c=String(val).toLowerCase().replace(/_/g,' ');return {text:c.charAt(0).toUpperCase()+c.slice(1),cls:'unknown'};}
   }
 }
-
-function tempColor(t) {
+function isSlippery(sc){return sc.cls==='danger'||sc.cls==='orange';}
+function tempColor(t){
   if(t===null||t===undefined) return '';
-  if(t < -5) return 'danger';
-  if(t < 0) return 'orange';
-  if(t < 3) return 'warn';
+  if(t<-5) return 'danger';
+  if(t<0)  return 'orange';
+  if(t<3)  return 'warn';
   return 'ok';
 }
-
-function stationIconColor(surface, roadTemp) {
-  const s = surfaceLabel(surface);
+function stationIconColor(surface,roadTemp){
+  const s=surfaceLabel(surface);
   if(s.cls==='danger') return '#c0392b';
   if(s.cls==='orange') return '#d35400';
   if(s.cls==='warn')   return '#c47a00';
-  if(roadTemp!==null && roadTemp!==undefined && roadTemp < 0) return '#d35400';
+  if(roadTemp!=null&&roadTemp<0) return '#d35400';
   return '#2a7d3f';
 }
 
-// ─── Find field name robustly ─────────────────────────────────────────────────
-function findField(attrs, candidates) {
-  for(const c of candidates) {
-    for(const k of Object.keys(attrs)) {
-      if(k.toLowerCase().includes(c.toLowerCase()) && attrs[k]!==null) return attrs[k];
-    }
-  }
-  // return null even if found but null
-  for(const c of candidates) {
-    for(const k of Object.keys(attrs)) {
-      if(k.toLowerCase().includes(c.toLowerCase())) return attrs[k];
-    }
-  }
-  return null;
-}
-
-// ─── Render station table ─────────────────────────────────────────────────────
-function isSlippery(sc) {
-  return sc.cls === 'danger' || sc.cls === 'cold';
-}
-
-function renderStations(stations) {
-  const panel = document.getElementById('stations-panel');
-  panel.innerHTML = '';
-
-  if(!stations.length) {
-    panel.innerHTML = '<div class="empty-state"><div class="empty-icon">🔍</div><div>Marsruudi lähedal (300 m) ei leitud ühtegi ilmajaama.</div></div>';
+// ─── Render ──────────────────────────────────────────────────────────────────
+function renderStations(stations){
+  const panel=document.getElementById('stations-panel');
+  panel.innerHTML='';
+  if(!stations.length){
+    panel.innerHTML='<div class="empty-state"><div class="empty-icon">&#128269;</div><div>Marsruudi l&#228;hedal (300 m) ei leitud &#252;htegi ilmajaama.</div></div>';
     return;
   }
+  const hdr=document.createElement('div');
+  hdr.className='section-header';
+  hdr.textContent=`${stations.length} jaam${stations.length!==1?'a':''} marsruudil`;
+  panel.appendChild(hdr);
 
-  const header = document.createElement('div');
-  header.className = 'section-header';
-  header.textContent = `${stations.length} jaam${stations.length!==1?'a':''} marsruudil`;
-  panel.appendChild(header);
-
-  const table = document.createElement('table');
-  table.className = 'stations-table';
-  table.innerHTML = `
-    <thead>
-      <tr>
-        <th>Jaam</th>
-        <th>Tee temp</th>
-        <th>Õhu temp</th>
-        <th>Teekate</th>
-      </tr>
-    </thead>
-    <tbody id="stations-tbody"></tbody>
-  `;
+  const table=document.createElement('table');
+  table.className='stations-table';
+  table.innerHTML='<colgroup><col/><col/><col/><col/></colgroup><thead><tr><th>Jaam</th><th>Tee temp</th><th>&#213;hu temp</th><th>Teekate</th></tr></thead><tbody id="stations-tbody"></tbody>';
   panel.appendChild(table);
-  const tbody = table.querySelector('#stations-tbody');
+  const tbody=table.querySelector('#stations-tbody');
 
-  stations.forEach((s, idx) => {
-    const attrs = s.attributes;
-    const name     = attrs.site_name || 'Station';
-    const road     = attrs.road_name || '';
-    const roadTemp = attrs.road_temp;
-    const airTemp  = attrs.air_temp;
-    const surface  = attrs.road_status;
+  stations.forEach((s,idx)=>{
+    const a=s.attributes;
+    const name=a.site_name||'Jaam';
+    const road=a.road_name||'';
+    const rtNum=a.road_temp!=null?parseFloat(a.road_temp):null;
+    const atNum=a.air_temp!=null?parseFloat(a.air_temp):null;
+    const sc=surfaceLabel(a.road_status);
+    const slip=isSlippery(sc);
+    const iconColor=stationIconColor(a.road_status,rtNum);
 
-    const sc      = surfaceLabel(surface);
-    const slip    = isSlippery(sc);
-    const rtNum   = roadTemp !== null && roadTemp !== undefined ? parseFloat(roadTemp) : null;
-    const atNum   = airTemp  !== null && airTemp  !== undefined ? parseFloat(airTemp)  : null;
-    const iconColor = stationIconColor(surface, rtNum);
-
-    const tr = document.createElement('tr');
+    const tr=document.createElement('tr');
     if(slip) tr.classList.add('slippery');
-    if(idx === 0) tr.classList.add('active');
-
-    tr.innerHTML = `
-      <td class="td-name">
-        ${idx===0 ? '<span class="next-chip">JÄRGMINE</span>' : ''}
-        ${name}
-        ${slip ? '<span class="slippery-flag" title="Libe tee">⚠️</span>' : ''}
-        <div class="td-road">${road}</div>
-      </td>
-      <td class="td-temp ${rtNum!==null ? tempColor(rtNum) : ''}">${rtNum!==null ? rtNum.toFixed(1)+'°C' : '—'}</td>
-      <td class="td-temp ${atNum!==null ? tempColor(atNum) : ''}">${atNum!==null ? atNum.toFixed(1)+'°C' : '—'}</td>
-      <td><span class="surface-pill pill-${sc.cls}">${sc.text}</span></td>
-    `;
-
-    tr.addEventListener('click', () => {
-      document.querySelectorAll('.stations-table tbody tr').forEach(r => r.classList.remove('active'));
+    if(idx===0) tr.classList.add('active');
+    tr.innerHTML=
+      '<td class="td-name">'+(idx===0?'<span class="next-chip">J&#196;RGMINE</span>':'')+name+(slip?'<span class="slippery-flag" title="Libe tee">&#9888;&#65039;</span>':'')+'<div class="td-road">'+road+'</div></td>'+
+      '<td class="td-temp '+(rtNum!==null?tempColor(rtNum):'')+'">'+( rtNum!==null?rtNum.toFixed(1)+'&deg;C':'&mdash;')+'</td>'+
+      '<td class="td-temp '+(atNum!==null?tempColor(atNum):'')+'">'+( atNum!==null?atNum.toFixed(1)+'&deg;C':'&mdash;')+'</td>'+
+      '<td><span class="surface-pill pill-'+sc.cls+'">'+sc.text+'</span></td>';
+    tr.addEventListener('click',()=>{
+      document.querySelectorAll('.stations-table tbody tr').forEach(r=>r.classList.remove('active'));
       tr.classList.add('active');
-      map.setView([s._lat, s._lng], 13);
+      map.setView([s._lat,s._lng],13);
       stationMarkers[idx]?.openPopup();
     });
-
     tbody.appendChild(tr);
 
-    // Map marker
-    const marker = L.marker([s._lat, s._lng], { icon: stationIcon(iconColor) }).addTo(map);
-    marker.bindPopup(`
-      <div style="font-family:Arial,sans-serif;font-size:12px;min-width:160px">
-        <div style="font-weight:700;font-size:13px;margin-bottom:6px">${name}</div>
-        <div style="color:#888;margin-bottom:8px">${road}</div>
-        <div><b>Tee temp:</b> ${rtNum!==null ? rtNum.toFixed(1)+'°C' : '—'}</div>
-        <div><b>Õhu temp:</b> ${atNum!==null ? atNum.toFixed(1)+'°C' : '—'}</div>
-        <div><b>Teekate:</b>  ${sc.text}${slip ? ' ⚠️' : ''}</div>
-      </div>
-    `);
+    const marker=L.marker([s._lat,s._lng],{icon:stationIcon(iconColor)}).addTo(map);
+    marker.bindPopup(
+      '<div style="font-family:Arial,sans-serif;font-size:12px;min-width:150px">'+
+      '<b style="font-size:13px">'+name+'</b>'+
+      '<div style="color:#888;margin:4px 0 8px">'+road+'</div>'+
+      '<div><b>Tee temp:</b> '+(rtNum!==null?rtNum.toFixed(1)+'&deg;C':'&mdash;')+'</div>'+
+      '<div><b>&Otilde;hu temp:</b> '+(atNum!==null?atNum.toFixed(1)+'&deg;C':'&mdash;')+'</div>'+
+      '<div><b>Teekate:</b> '+sc.text+(slip?' &#9888;':'')+'</div></div>'
+    );
     stationMarkers.push(marker);
   });
 }
 
-// ─── Main flow ────────────────────────────────────────────────────────────────
-async function planRoute() {
-  const apiKey = document.getElementById('ors-key').value.trim();
-  const origin = document.getElementById('origin').value.trim();
-  const dest   = document.getElementById('dest').value.trim();
+// ─── Main ────────────────────────────────────────────────────────────────────
+async function planRoute(){
+  const apiKey=document.getElementById('ors-key').value.trim();
+  const origin=document.getElementById('origin').value.trim();
+  const dest=document.getElementById('dest').value.trim();
+  if(!origin||!dest){showToast('Palun sisesta algus- ja sihtpunkt');return;}
 
-  if(!apiKey) { showToast('Please enter your OpenRouteService API key'); return; }
-  if(!origin || !dest) { showToast('Palun sisesta algus- ja sihtpunkt'); return; }
-
-  // Clear old
-  if(routeLayer) { map.removeLayer(routeLayer); routeLayer=null; }
+  if(routeLayer){map.removeLayer(routeLayer);routeLayer=null;}
   stationMarkers.forEach(m=>map.removeLayer(m));
-  stationMarkers = [];
+  stationMarkers=[];
 
-  const btn = document.getElementById('go-btn');
-  btn.disabled = true;
+  const btn=document.getElementById('go-btn');
+  btn.disabled=true;
+  try{
+    setLoading(true,'Geokodeerin asukohti...');
+    const [oCoord,dCoord]=await Promise.all([geocode(origin,apiKey),geocode(dest,apiKey)]);
 
-  try {
-    setLoading(true, 'Geokodeerin asukohti…');
-    const [oCoord, dCoord] = await Promise.all([geocode(origin, apiKey), geocode(dest, apiKey)]);
+    setLoading(true,'Arvutan marsruuti...');
+    const routeData=await getRoute(oCoord,dCoord,apiKey);
+    const feat=routeData.features[0];
+    const coords=feat.geometry.coordinates;
+    const summary=feat.properties.summary;
 
-    setLoading(true, 'Arvutan marsruuti…');
-    const routeData = await getRoute(oCoord, dCoord, apiKey);
-    const feature = routeData.features[0];
-    const coords  = feature.geometry.coordinates; // [lng,lat][]
-    const summary = feature.properties.summary;
+    routeLayer=L.geoJSON(routeData,{style:{color:'#2a7d3f',weight:5,opacity:0.75}}).addTo(map);
+    map.invalidateSize();
+    map.fitBounds(routeLayer.getBounds(),{padding:[40,40]});
 
-    // Draw route
-    routeLayer = L.geoJSON(routeData, {
-      style: { color: '#2a7d3f', weight: 5, opacity: 0.75 }
-    }).addTo(map);
-    map.fitBounds(routeLayer.getBounds(), { padding: [40,40] });
+    const km=(summary.distance/1000).toFixed(0);
+    const mins=Math.round(summary.duration/60);
+    document.getElementById('sum-dist').textContent=km+' km';
+    document.getElementById('sum-time').textContent=mins>=60?Math.floor(mins/60)+'h '+(mins%60)+'min':mins+' min';
 
-    // Route summary
-    const km = (summary.distance/1000).toFixed(0);
-    const mins = Math.round(summary.duration/60);
-    document.getElementById('sum-dist').textContent = km + ' km';
-    document.getElementById('sum-time').textContent = mins >= 60 ? `${Math.floor(mins/60)}h ${mins%60}m` : mins+'m';
+    setLoading(true,'Laen Tarktee ilmajaamade andmeid...');
+    const tarkteeData=await fetchWeatherStations();
 
-    setLoading(true, 'Laen Tarktee ilmajaamade andmeid…');
-    const tarkteeData = await fetchWeatherStations();
-
-    if(!tarkteeData.features?.length) throw new Error('No station data returned from Tarktee');
-
-    // Convert stations + filter within 300m of route
-    const MAX_DIST_M = 300;
-    let matched = [];
-
-    for(const feat of tarkteeData.features) {
-      const g = feat.geometry;
+    const MAX_DIST_M=300;
+    const matched=[];
+    for(const f of tarkteeData.features){
+      const g=f.geometry;
       if(!g) continue;
-      const [lat, lng] = lcc3301ToWgs84(g.x, g.y);
+      const [lat,lng]=lcc3301ToWgs84(g.x,g.y);
       if(isNaN(lat)||isNaN(lng)) continue;
-
-      const { distM, routeIdx } = stationDistToRoute(lat, lng, coords);
-      if(distM <= MAX_DIST_M) {
-        matched.push({ ...feat, _lat: lat, _lng: lng, _distM: distM, _routeIdx: routeIdx });
-      }
+      const {distM,routeIdx}=stationDistToRoute(lat,lng,coords);
+      if(distM<=MAX_DIST_M) matched.push({...f,_lat:lat,_lng:lng,_distM:distM,_routeIdx:routeIdx});
     }
+    matched.sort((a,b)=>a._routeIdx-b._routeIdx);
 
-    // Sort by position along route
-    matched.sort((a,b) => a._routeIdx - b._routeIdx);
-
-    document.getElementById('sum-stations').textContent = matched.length;
+    document.getElementById('sum-stations').textContent=matched.length;
     document.getElementById('route-summary').classList.add('visible');
-
     renderStations(matched);
 
-  } catch(err) {
-    showToast(err.message || 'An error occurred');
-  } finally {
+  }catch(err){
+    showToast(err.message||'Viga');
+  }finally{
     setLoading(false);
-    btn.disabled = false;
+    btn.disabled=false;
   }
 }
 
-function setLoading(show, text='') {
-  const el = document.getElementById('loading');
-  const tx = document.getElementById('loading-text');
-  tx.textContent = text;
-  el.classList.toggle('show', show);
+function setLoading(show,text=''){
+  const el=document.getElementById('loading');
+  document.getElementById('loading-text').textContent=text;
+  el.classList.toggle('show',show);
+}
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),4000);
 }
 
-function showToast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'), 4000);
-}
-
-// Button + Enter key on inputs
-document.getElementById('go-btn').addEventListener('click', planRoute);
-document.querySelectorAll('.route-input').forEach(inp => {
-  inp.addEventListener('keydown', e => { if(e.key==='Enter') planRoute(); });
+document.getElementById('go-btn').addEventListener('click',planRoute);
+document.querySelectorAll('.route-input').forEach(inp=>{
+  inp.addEventListener('keydown',e=>{if(e.key==='Enter')planRoute();});
 });
 
 }); // end DOMContentLoaded
