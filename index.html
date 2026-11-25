@@ -2,9 +2,17 @@
 <html lang="et">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Teeolud</title>
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<meta name="description" content="Teeilmajaamad sinu marsruudil – Tarktee.ee reaalajaandmed">
+<meta name="theme-color" content="#2a7d3f">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Teeolud">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAACa0lEQVR42u3csU0DQRBA0cFQDQWQOqIVeiAgpgdaISKlJyQCRIB0gGzNrm9n3k/BdxJ+mjO367u6fTqGtNXBn0BwCA7BITgEh+AQHIJDcAgOCQ7BITgEh+AQHIJDcAgOwSF9d+NPsLdePt5++9HD9REOJv75nTlK4FiDxeZLRhOBYzEWM4n4QLqqjPTjwFFNxlAfcCwvY9wx4aggY9CR4SgiY8Tx4agjI/0scAiOHmMj91xwCI42YyPxjHAIDsHhmpJ4XjgUlux/9P74eupL7p7vXVYkOASH4BAcgmNv/6qc/So49FeTv4mUeF44BIfgcGVJPCMcgqPT8Mg6FxyCo83wSDwLHKV85B4fjjo+0o8MRxEfI455sLASl1heyX0vB00jk2P5+THuOuWxT7G5RXTOGuzX+3r2NnHPBOsyQk4i4mmCTa8ynkOq3e3/8IFUcAgOwSE4BIfgiGILK9Hv2ysmh+AQHIJDcAgOwSE4FB41Ge6PmRyCw2wwY0wOwSE4BIfgEByCQ3AIDsEhwSE4YsCCSJPlFZNDYT9H7PCxTyaH4BAcgkOCQ3AIDsEhOARHrPhttg63UE0OwSE4BIfgEByCQ3AobBMMN8pMDsFhJBg2JofgEByCQ3AIDsEhOASH4JDgUHMco5c/ai+vmBwK+znCY59MDsEhOASH4BAcgkNwCA6pEY45dzkL30s1OQSH4BAcgkNwCA7BobBNMNwxMzkEh0lg6pgcgkNwCA7BITgEh+AQHIJDgkM9ccxf7Ci5vGJyKOznCI99MjkEh+AQHIJDcAgOwSE4pPo4LnVzs95NVZNDcAgOwaEZfQKHhJveXWnDVgAAAABJRU5ErkJggg==">
+<link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAACa0lEQVR42u3csU0DQRBA0cFQDQWQOqIVeiAgpgdaISKlJyQCRIB0gGzNrm9n3k/BdxJ+mjO367u6fTqGtNXBn0BwCA7BITgEh+AQHIJDcAgOCQ7BITgEh+AQHIJDcAgOwSF9d+NPsLdePt5++9HD9REOJv75nTlK4FiDxeZLRhOBYzEWM4n4QLqqjPTjwFFNxlAfcCwvY9wx4aggY9CR4SgiY8Tx4agjI/0scAiOHmMj91xwCI42YyPxjHAIDsHhmpJ4XjgUlux/9P74eupL7p7vXVYkOASH4BAcgmNv/6qc/So49FeTv4mUeF44BIfgcGVJPCMcgqPT8Mg6FxyCo83wSDwLHKV85B4fjjo+0o8MRxEfI455sLASl1heyX0vB00jk2P5+THuOuWxT7G5RXTOGuzX+3r2NnHPBOsyQk4i4mmCTa8ynkOq3e3/8IFUcAgOwSE4BIfgiGILK9Hv2ysmh+AQHIJDcAgOwSE4FB41Ge6PmRyCw2wwY0wOwSE4BIfgEByCQ3AIDsEhwSE4YsCCSJPlFZNDYT9H7PCxTyaH4BAcgkOCQ3AIDsEhOARHrPhttg63UE0OwSE4BIfgEByCQ3AobBMMN8pMDsFhJBg2JofgEByCQ3AIDsEhOASH4JDgUHMco5c/ai+vmBwK+znCY59MDsEhOASH4BAcgkNwCA6pEY45dzkL30s1OQSH4BAcgkNwCA7BobBNMNwxMzkEh0lg6pgcgkNwCA7BITgEh+AQHIJDgkM9ccxf7Ci5vGJyKOznCI99MjkEh+AQHIJDcAgOwSE4pPo4LnVzs95NVZNDcAgOwaEZfQKHhJveXWnDVgAAAABJRU5ErkJggg==">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <style>
   :root {
@@ -16,199 +24,219 @@
     --orange: #d35400;
     --danger: #c0392b;
     --text: #1a1d2e;
-    --muted: #7a82a0;
+    --muted: #6b7391;
+    --safe-t: env(safe-area-inset-top, 0px);
+    --safe-b: env(safe-area-inset-bottom, 0px);
+    --safe-l: env(safe-area-inset-left, 0px);
+    --safe-r: env(safe-area-inset-right, 0px);
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-
-  /* Desktop: 2-col grid, header spans full width */
+  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   body {
-    font-family: Arial, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     background: var(--bg);
     color: var(--text);
-    height: 100vh;
-    display: grid;
-    grid-template-columns: 380px 1fr;
-    grid-template-rows: 64px 1fr;
-    overflow: hidden;
-  }
-  header {
-    grid-column: 1 / -1;
-    grid-row: 1;
-    background: var(--panel);
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    padding: 0 24px;
-    gap: 16px;
-    z-index: 10;
-  }
-  /* Map is first in DOM after header — place explicitly col 2 on desktop */
-  #map {
-    grid-column: 2;
-    grid-row: 2;
-    width: 100%;
-    height: 100%;
-  }
-  /* Sidebar placed col 1 on desktop */
-  #sidebar {
-    grid-column: 1;
-    grid-row: 2;
-    background: var(--panel);
-    border-right: 1px solid var(--border);
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
+    min-height: 100vh;
+    min-height: 100dvh;
+    -webkit-tap-highlight-color: transparent;
   }
 
-  .logo { font-weight: 800; font-size: 22px; color: var(--accent); }
-  .tagline { font-size: 11px; color: var(--muted); }
+  /* ───────── Mobile-first layout: header → map → panel (page scrolls) ───────── */
+  header {
+    position: sticky; top: 0; z-index: 1000;
+    background: var(--panel);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 12px;
+    padding: calc(10px + var(--safe-t)) calc(16px + var(--safe-r)) 10px calc(16px + var(--safe-l));
+  }
+  .logo { font-weight: 800; font-size: 20px; color: var(--accent); }
+  .tagline { font-size: 11px; color: var(--muted); display: none; }
   .status-dot {
-    margin-left: auto;
-    width: 8px; height: 8px; border-radius: 50%;
-    background: var(--accent);
-    box-shadow: 0 0 8px rgba(42,125,63,0.5);
+    margin-left: auto; width: 8px; height: 8px; border-radius: 50%;
+    background: var(--accent); box-shadow: 0 0 8px rgba(42,125,63,0.5);
     animation: pulse 2s infinite;
   }
   @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
 
-  .search-section { padding: 20px; border-bottom: 1px solid var(--border); flex-shrink: 0; }
-  .field-label { font-size: 10px; letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; margin-bottom: 6px; }
-  .input-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 14px; }
+  #map {
+    width: 100%;
+    height: 42vh;
+    height: 42dvh;
+    min-height: 220px;
+    background: #e8ecf2;
+  }
+
+  #sidebar {
+    background: var(--panel);
+    padding-bottom: calc(16px + var(--safe-b));
+  }
+
+  .search-section {
+    padding: 14px calc(14px + var(--safe-r)) 14px calc(14px + var(--safe-l));
+    border-bottom: 1px solid var(--border);
+  }
+  .field-label {
+    font-size: 11px; letter-spacing: 0.1em; color: var(--muted);
+    text-transform: uppercase; margin-bottom: 8px;
+  }
+  .input-row { display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px; }
+  .origin-wrap { display: flex; gap: 8px; }
   .route-input {
+    flex: 1; min-width: 0; width: 100%;
     background: var(--bg); border: 1px solid var(--border); color: var(--text);
-    padding: 10px 14px; font-family: Arial, sans-serif; font-size: 13px;
-    border-radius: 6px; outline: none; transition: border-color 0.2s; width: 100%;
+    padding: 12px 14px;
+    font-family: inherit;
+    font-size: 16px; /* 16px stops iOS Safari from zooming on focus */
+    border-radius: 8px; outline: none;
+    -webkit-appearance: none; appearance: none;
   }
-  .route-input:focus { border-color: var(--accent); }
+  .route-input:focus { border-color: var(--accent); background: #fff; }
   .route-input::placeholder { color: var(--muted); }
-  .go-btn {
-    background: var(--accent); color: #fff; border: none;
-    padding: 11px 20px; font-family: Arial, sans-serif; font-weight: 700;
-    font-size: 14px; border-radius: 6px; cursor: pointer; width: 100%;
-    transition: opacity 0.2s, transform 0.1s;
+  .route-input.gps { color: var(--accent); font-weight: 700; }
+  .gps-btn {
+    flex-shrink: 0; width: 48px;
+    border: 1px solid var(--border); background: var(--bg);
+    border-radius: 8px; font-size: 20px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    touch-action: manipulation;
   }
-  .go-btn:hover { opacity: 0.88; }
-  .go-btn:active { transform: scale(0.98); }
-  .go-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+  .gps-btn.active { background: rgba(42,125,63,0.12); border-color: var(--accent); }
+  .gps-btn:disabled { opacity: 0.5; }
+  .go-btn {
+    width: 100%; min-height: 48px;
+    background: var(--accent); color: #fff; border: none;
+    font-family: inherit; font-weight: 700; font-size: 15px; letter-spacing: 0.03em;
+    border-radius: 8px; cursor: pointer; touch-action: manipulation;
+  }
+  .go-btn:active { opacity: 0.85; }
+  .go-btn:disabled { opacity: 0.45; }
 
   .route-summary {
-    padding: 10px 16px; background: var(--bg);
-    border-bottom: 1px solid var(--border);
-    display: none; gap: 16px; font-size: 11px;
-    color: var(--muted); flex-shrink: 0; flex-wrap: wrap;
+    display: none; flex-wrap: wrap; gap: 6px 16px;
+    padding: 10px calc(14px + var(--safe-r)) 10px calc(14px + var(--safe-l));
+    background: var(--bg); border-bottom: 1px solid var(--border);
+    font-size: 13px; color: var(--muted);
   }
   .route-summary.visible { display: flex; }
-  .route-summary strong { color: var(--text); font-weight: 600; }
+  .route-summary strong { color: var(--text); }
 
-  #stations-panel { flex: 1; overflow-y: auto; padding: 14px; }
-  #stations-panel::-webkit-scrollbar { width: 4px; }
-  #stations-panel::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+  #stations-panel { padding: 10px calc(10px + var(--safe-r)) 10px calc(10px + var(--safe-l)); }
 
   .empty-state {
-    display: flex; flex-direction: column; align-items: center;
-    justify-content: center; gap: 12px; height: 100%;
-    color: var(--muted); font-size: 12px; text-align: center; line-height: 1.7;
+    display: flex; flex-direction: column; align-items: center; gap: 10px;
+    padding: 28px 12px; color: var(--muted);
+    font-size: 14px; text-align: center; line-height: 1.6;
   }
-  .empty-icon { font-size: 36px; opacity: 0.3; }
+  .empty-icon { font-size: 34px; opacity: 0.35; }
+  .empty-note { font-size: 11px; opacity: 0.8; }
+
   .section-header {
-    font-size: 10px; letter-spacing: 0.1em; color: var(--muted);
-    text-transform: uppercase; padding: 4px 0 8px;
-    border-bottom: 1px solid var(--border); margin-bottom: 6px;
+    font-size: 11px; letter-spacing: 0.08em; color: var(--muted);
+    text-transform: uppercase; padding: 4px 4px 8px;
   }
 
-  .stations-table { width: 100%; border-collapse: collapse; font-size: 12px; table-layout: fixed; }
-  .stations-table col:nth-child(1) { width: 36%; }
-  .stations-table col:nth-child(2) { width: 18%; }
-  .stations-table col:nth-child(3) { width: 18%; }
-  .stations-table col:nth-child(4) { width: 28%; }
+  /* ───────── Station table (4 columns, fits 320px) ───────── */
+  .stations-table { width: 100%; border-collapse: collapse; table-layout: fixed; font-size: 13px; }
+  .stations-table col.c-name { width: 37%; }
+  .stations-table col.c-rt   { width: 17%; }
+  .stations-table col.c-at   { width: 17%; }
+  .stations-table col.c-surf { width: 29%; }
   .stations-table thead th {
-    font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--muted); text-align: left; padding: 6px 6px;
-    border-bottom: 2px solid var(--border);
+    font-size: 10px; letter-spacing: 0.04em; text-transform: uppercase;
+    color: var(--muted); text-align: left; font-weight: 700;
+    padding: 6px 4px; border-bottom: 2px solid var(--border);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
   }
-  .stations-table tbody tr { border-bottom: 1px solid var(--border); cursor: pointer; transition: background 0.15s; }
-  .stations-table tbody tr:hover  { background: #eef1f9; }
+  .stations-table thead th.num, .stations-table td.num { text-align: right; padding-right: 8px; }
+  .stations-table tbody tr { border-bottom: 1px solid var(--border); cursor: pointer; }
   .stations-table tbody tr.active { background: #e6f0ea; }
-  .stations-table tbody tr.slippery        { background: #fdecea; }
-  .stations-table tbody tr.slippery:hover  { background: #fad6d3; }
+  .stations-table tbody tr.slippery { background: #fdecea; }
+  .stations-table tbody tr.stale,
+  .stations-table tbody tr.stale.slippery { background: #f2f3f6; }
+  .stations-table tbody tr.stale.active { background: #e6e8ee; }
+  .stations-table tbody tr.stale .td-temp,
+  .stations-table tbody tr.stale .td-name { color: #9aa0b4; }
+  .stations-table tbody tr.stale .surface-pill { background: rgba(122,130,160,0.12); color: #9aa0b4; }
+  .td-time.old { color: var(--danger); font-weight: 700; }
   .stations-table tbody tr.slippery.active { background: #fad6d3; }
-  .stations-table td { padding: 8px 6px; vertical-align: middle; word-break: break-word; }
+  .stations-table td { padding: 10px 4px; vertical-align: middle; overflow-wrap: anywhere; }
 
-  .td-name  { font-weight: 500; color: var(--text); }
-  .td-road  { font-size: 10px; color: var(--muted); margin-top: 1px; }
-  .td-temp  { font-weight: 500; white-space: nowrap; }
+  .td-name { font-weight: 700; line-height: 1.3; }
+  .td-time { font-size: 11px; color: var(--muted); font-weight: 400; margin-top: 2px; }
+  .td-temp { font-weight: 700; white-space: nowrap; font-variant-numeric: tabular-nums; }
   .td-temp.ok     { color: var(--accent); }
   .td-temp.warn   { color: var(--warn); }
   .td-temp.orange { color: var(--orange); }
   .td-temp.danger { color: var(--danger); }
 
   .surface-pill {
-    display: inline-block; padding: 2px 6px; border-radius: 3px;
-    font-size: 10px; font-weight: 500; word-break: break-word;
+    display: inline-block; padding: 3px 6px; border-radius: 4px;
+    font-size: 12px; font-weight: 700; line-height: 1.25;
   }
   .pill-ok      { background: rgba(42,125,63,0.12);   color: var(--accent); }
-  .pill-warn    { background: rgba(196,122,0,0.12);   color: var(--warn); }
-  .pill-orange  { background: rgba(211,84,0,0.12);    color: var(--orange); }
+  .pill-warn    { background: rgba(196,122,0,0.13);   color: var(--warn); }
+  .pill-orange  { background: rgba(211,84,0,0.13);    color: var(--orange); }
   .pill-danger  { background: rgba(192,57,43,0.15);   color: var(--danger); }
-  .pill-unknown { background: rgba(122,130,160,0.12); color: var(--muted); }
+  .pill-unknown { background: rgba(122,130,160,0.14); color: var(--muted); }
 
   .next-chip {
     display: inline-block; background: var(--accent); color: #fff;
-    font-size: 8px; font-weight: 700; padding: 1px 5px; border-radius: 2px;
-    letter-spacing: 0.06em; vertical-align: middle; margin-right: 3px;
+    font-size: 9px; font-weight: 700; letter-spacing: 0.05em;
+    padding: 2px 5px; border-radius: 3px; margin-bottom: 3px;
   }
-  .slippery-flag { font-size: 12px; vertical-align: middle; margin-left: 3px; }
 
+  /* ───────── Overlays ───────── */
   #loading {
-    position: fixed; inset: 0; background: rgba(244,246,250,0.88);
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    gap: 16px; z-index: 9999; pointer-events: none; opacity: 0; transition: opacity 0.3s;
+    position: fixed; inset: 0; z-index: 3000;
+    background: rgba(244,246,250,0.9);
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px;
+    opacity: 0; pointer-events: none; transition: opacity 0.2s;
   }
   #loading.show { opacity: 1; pointer-events: all; }
   .spinner {
-    width: 40px; height: 40px; border: 3px solid var(--border);
-    border-top-color: var(--accent); border-radius: 50%;
+    width: 38px; height: 38px; border-radius: 50%;
+    border: 3px solid var(--border); border-top-color: var(--accent);
     animation: spin 0.8s linear infinite;
   }
   @keyframes spin { to { transform: rotate(360deg); } }
-  .loading-text { font-size: 13px; color: var(--muted); }
+  .loading-text { font-size: 14px; color: var(--muted); padding: 0 24px; text-align: center; }
 
   #toast {
-    position: fixed; bottom: 24px; left: 50%;
-    transform: translateX(-50%) translateY(80px);
-    background: var(--danger); color: white; padding: 10px 20px;
-    border-radius: 6px; font-size: 13px; z-index: 9999;
-    transition: transform 0.3s; max-width: 90vw; text-align: center;
+    position: fixed; left: 50%; z-index: 3001;
+    bottom: calc(16px + var(--safe-b));
+    transform: translateX(-50%) translateY(150%);
+    background: var(--danger); color: #fff;
+    padding: 12px 18px; border-radius: 8px;
+    font-size: 14px; text-align: center; line-height: 1.4;
+    width: max-content; max-width: calc(100vw - 32px);
+    opacity: 0; visibility: hidden;
+    transition: transform 0.25s, opacity 0.25s, visibility 0.25s;
   }
-  #toast.show { transform: translateX(-50%) translateY(0); }
+  #toast.show { transform: translateX(-50%) translateY(0); opacity: 1; visibility: visible; }
 
-  /* Mobile (≤700px): header | map | sidebar stacked, each in its own row */
-  @media (max-width: 700px) {
+  .leaflet-popup-content { font-family: Arial, Helvetica, sans-serif; font-size: 13px; }
+
+  /* ───────── Desktop / tablet: sidebar left, map right ───────── */
+  @media (min-width: 768px) {
     body {
-      grid-template-columns: 1fr;
-      grid-template-rows: 50px 240px 1fr;
-      height: 100dvh;
-      overflow: hidden;
+      height: 100vh; height: 100dvh; overflow: hidden;
+      display: grid;
+      grid-template-columns: 400px 1fr;
+      grid-template-rows: auto 1fr;
     }
-    header  { grid-column: 1; grid-row: 1; padding: 0 14px; }
-    #map    { grid-column: 1; grid-row: 2; height: 100%; }
+    header { position: static; grid-column: 1 / -1; grid-row: 1; padding: 14px 24px; }
+    .logo { font-size: 22px; }
+    .tagline { display: block; }
+    #map { grid-column: 2; grid-row: 2; height: 100%; min-height: 0; }
     #sidebar {
-      grid-column: 1; grid-row: 3;
-      border-right: none; border-top: 1px solid var(--border);
-      overflow-y: auto; height: 100%;
+      grid-column: 1; grid-row: 2; min-height: 0;
+      display: flex; flex-direction: column;
+      border-right: 1px solid var(--border);
+      padding-bottom: 0;
     }
-    .tagline { display: none; }
-    .logo { font-size: 18px; }
-    .search-section { padding: 12px 14px; }
-    .input-row { gap: 8px; margin-bottom: 10px; }
-    .route-input { font-size: 14px; }
-    .go-btn { font-size: 14px; padding: 11px; }
-    .route-summary { padding: 8px 14px; }
-    #stations-panel { padding: 10px 14px; overflow-y: visible; }
-    .stations-table { font-size: 11px; }
-    .stations-table thead th { padding: 5px 5px; font-size: 8px; }
-    .stations-table td { padding: 7px 5px; }
-    .surface-pill { font-size: 9px; padding: 1px 4px; }
+    #stations-panel { flex: 1; overflow-y: auto; padding: 12px; }
+    .stations-table tbody tr:hover { background: #eef1f9; }
+    .stations-table tbody tr.slippery:hover { background: #fad6d3; }
   }
 </style>
 </head>
@@ -217,296 +245,529 @@
 <header>
   <div>
     <div class="logo">Teeolud</div>
-    <div class="tagline">Teeolud · Tarktee.ee reaalajaandmed</div>
+    <div class="tagline">Teeilmajaamad sinu marsruudil · Tarktee.ee</div>
   </div>
   <div class="status-dot" title="Reaalajaandmed"></div>
 </header>
 
-<!-- Map FIRST in DOM so explicit grid-row placement works cleanly -->
 <div id="map"></div>
 
 <div id="sidebar">
   <div class="search-section">
-    <input type="hidden" id="ors-key" value="eyJvcmciOiI1YjNjZTM1OTc4NTExMTAwMDFjZjYyNDgiLCJpZCI6ImNkYWIxN2FiYTI4MzRhYTRhNWRlYWJiMWZmOWYzYmIzIiwiaCI6Im11cm11cjY0In0=" />
     <div class="field-label">Marsruut</div>
     <div class="input-row">
-      <input type="text" id="origin" class="route-input" placeholder="Alguspunkt, nt Tallinn" value="Tallinn" />
-      <input type="text" id="dest"   class="route-input" placeholder="Sihtpunkt, nt Tartu"   value="Tartu" />
+      <div class="origin-wrap">
+        <input type="text" id="origin" class="route-input" placeholder="Alguspunkt, nt Tallinn" value="Tallinn"
+               autocomplete="off" autocapitalize="words" enterkeyhint="next">
+        <button type="button" class="gps-btn" id="gps-btn" title="Kasuta minu asukohta" aria-label="Kasuta minu asukohta">📍</button>
+      </div>
+      <input type="text" id="dest" class="route-input" placeholder="Sihtpunkt, nt Tartu" value="Tartu"
+             autocomplete="off" autocapitalize="words" enterkeyhint="go">
     </div>
-    <button class="go-btn" id="go-btn">&#9654; PLANEERI MARSRUUT</button>
+    <button type="button" class="go-btn" id="go-btn">▶ PLANEERI MARSRUUT</button>
   </div>
 
   <div class="route-summary" id="route-summary">
-    <span>&#128205; <strong id="sum-dist">&#8212;</strong></span>
-    <span>&#9201; <strong id="sum-time">&#8212;</strong></span>
-    <span>&#127750; <strong id="sum-stations">&#8212;</strong> jaama</span>
+    <span>🛣 <strong id="sum-dist">—</strong></span>
+    <span>⏱ <strong id="sum-time">—</strong></span>
+    <span>🌡 <strong id="sum-stations">—</strong></span>
   </div>
 
   <div id="stations-panel">
     <div class="empty-state">
-      <div class="empty-icon">&#127783;</div>
-      <div>Sisesta marsruut, et n&#228;ha<br>teeolujaamasid sinu teel.</div>
-      <div style="font-size:10px;opacity:0.6">Andmed: tarktee.ee &middot; Uuendatakse iga 15 min</div>
+      <div class="empty-icon">🌧</div>
+      <div>Sisesta marsruut, et näha<br>teeilmajaamu oma teel.</div>
+      <div class="empty-note">Andmed: tarktee.ee · uuendatakse iga 15 min</div>
     </div>
   </div>
 </div>
 
-<div id="loading"><div class="spinner"></div><div class="loading-text" id="loading-text">Laen&#8230;</div></div>
-<div id="toast"></div>
+<div id="loading"><div class="spinner"></div><div class="loading-text" id="loading-text">Laen…</div></div>
+<div id="toast" role="alert"></div>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
+(function () {
+  'use strict';
 
-// ─── EPSG:3301 to WGS84 ──────────────────────────────────────────────────────
-function lcc3301ToWgs84(x, y) {
-  const a=6378137.0, f=1/298.257222101;
-  const b=a*(1-f), e2=1-(b*b)/(a*a), e=Math.sqrt(e2);
-  const phi1=58.0*Math.PI/180, phi2=59.333333333*Math.PI/180;
-  const phi0=57.517553*Math.PI/180, lam0=24.0*Math.PI/180;
-  const FE=500000, FN=6375000;
-  function m(p){ return Math.cos(p)/Math.sqrt(1-e2*Math.sin(p)**2); }
-  function t(p){ const s=Math.sin(p); return Math.tan(Math.PI/4-p/2)/((1-e*s)/(1+e*s))**(e/2); }
-  const m1=m(phi1),m2=m(phi2),t1=t(phi1),t2=t(phi2),t0=t(phi0);
-  const n=(Math.log(m1)-Math.log(m2))/(Math.log(t1)-Math.log(t2));
-  const F=m1/(n*t1**n), r0=a*F*t0**n;
-  const xp=x-FE, yp=y-FN;
-  const r=Math.sign(n)*Math.sqrt(xp**2+(r0-yp)**2);
-  const theta=Math.atan2(xp,r0-yp);
-  const t_=(r/(a*F))**(1/n);
-  let phi=Math.PI/2-2*Math.atan(t_);
-  for(let i=0;i<10;i++){const s=Math.sin(phi);phi=Math.PI/2-2*Math.atan(t_*((1-e*s)/(1+e*s))**(e/2));}
-  return [phi*180/Math.PI,(theta/n+lam0)*180/Math.PI];
-}
+  // ─── Config ────────────────────────────────────────────────────────────────
+  var ORS_KEY = 'eyJvcmciOiI1YjNjZTM1OTc4NTExMTAwMDFjZjYyNDgiLCJpZCI6ImNkYWIxN2FiYTI4MzRhYTRhNWRlYWJiMWZmOWYzYmIzIiwiaCI6Im11cm11cjY0In0=';
+  // Live Tarktee feed (the 'tram' folder) first; the old feed is a fallback.
+  // outSR=3301 keeps coordinates in the Estonian grid the app converts from.
+  var TARKTEE_QUERY = '/MapServer/0/query?where=1%3D1&outFields=*&outSR=3301&f=json&resultRecordCount=1000';
+  var TARKTEE_URLS = [
+    'https://tarktee.ee/tarktee/rest/services/tram/road_weather_stations' + TARKTEE_QUERY,
+    'https://tarktee.ee/tarktee/rest/services/road_weather_stations' + TARKTEE_QUERY
+  ];
+  // Road cameras: many camera sites carry weather readings (e.g. Tõrenurme)
+  var TARKTEE_CAMERA_URLS = [
+    'https://tarktee.ee/tarktee/rest/services/tram/road_cameras' + TARKTEE_QUERY,
+    'https://tarktee.ee/tarktee/rest/services/road_cameras' + TARKTEE_QUERY
+  ];
+  var MAX_DIST_M = 300;       // stations within 300 m of the route
+  var TIMEOUT_MS = 20000;
 
-// ─── Map ─────────────────────────────────────────────────────────────────────
-const map = L.map('map', {zoomControl:true});
-L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-  attribution:'&copy; OpenStreetMap &copy; CARTO', maxZoom:17
-}).addTo(map);
-map.setView([58.8, 25.5], 7);
-
-let routeLayer = null;
-let stationMarkers = [];
-
-function stationIcon(color) {
-  return L.divIcon({
-    className:'',
-    html:`<div style="width:13px;height:13px;border-radius:50%;background:${color};border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,0.25)"></div>`,
-    iconSize:[13,13], iconAnchor:[6,6]
-  });
-}
-
-// ─── ORS Geocode ─────────────────────────────────────────────────────────────
-async function geocode(text, key) {
-  const r = await fetch(`https://api.openrouteservice.org/geocode/search?api_key=${key}&text=${encodeURIComponent(text)}&boundary.country=EE&size=1`);
-  if(!r.ok) throw new Error('Geokodeerimine ebaonnestus: ' + text);
-  const d = await r.json();
-  if(!d.features?.length) throw new Error('Asukohta ei leitud: ' + text);
-  return d.features[0].geometry.coordinates;
-}
-
-// ─── ORS Directions ──────────────────────────────────────────────────────────
-async function getRoute(oCoord, dCoord, key) {
-  const r = await fetch('https://api.openrouteservice.org/v2/directions/driving-car/geojson', {
-    method:'POST',
-    headers:{'Authorization':key,'Content-Type':'application/json'},
-    body:JSON.stringify({coordinates:[oCoord,dCoord]})
-  });
-  if(!r.ok){const e=await r.json().catch(()=>({}));throw new Error(e.error?.message||'Marsruudi arvutamine ebaonnestus');}
-  return r.json();
-}
-
-// ─── Tarktee ─────────────────────────────────────────────────────────────────
-async function fetchWeatherStations() {
-  const url='https://tarktee.ee/tarktee/rest/services/road_weather_stations/MapServer/0/query?where=1%3D1&outFields=*&f=json&resultRecordCount=1000';
-  const r = await fetch(url);
-  if(!r.ok) throw new Error('Tarktee andmete laadimine ebaonnestus (HTTP '+r.status+')');
-  const data = await r.json();
-  if(!data.features?.length) throw new Error('Tarktee ei tagastanud andmeid');
-  return data;
-}
-
-// ─── Geometry ────────────────────────────────────────────────────────────────
-function ptSegDist(px,py,ax,ay,bx,by){
-  const dx=bx-ax,dy=by-ay;
-  if(dx===0&&dy===0) return Math.hypot(px-ax,py-ay);
-  const t=Math.max(0,Math.min(1,((px-ax)*dx+(py-ay)*dy)/(dx*dx+dy*dy)));
-  return Math.hypot(px-ax-t*dx,py-ay-t*dy);
-}
-const LAT_M=111320, LNG_M=111320*Math.cos(58.8*Math.PI/180);
-function stationDistToRoute(sLat,sLng,coords){
-  let minDist=Infinity,minIdx=0;
-  for(let i=0;i<coords.length-1;i++){
-    const [aLng,aLat]=coords[i],[bLng,bLat]=coords[i+1];
-    const d=ptSegDist(sLng*LNG_M,sLat*LAT_M,aLng*LNG_M,aLat*LAT_M,bLng*LNG_M,bLat*LAT_M);
-    if(d<minDist){minDist=d;minIdx=i;}
-  }
-  return {distM:minDist,routeIdx:minIdx};
-}
-
-// ─── Conditions ──────────────────────────────────────────────────────────────
-function surfaceLabel(val){
-  if(val===null||val===undefined||val==='') return {text:'Teadmata',cls:'unknown'};
-  switch(String(val).toUpperCase()){
-    case 'DRY':                return {text:'Kuiv',         cls:'ok'};
-    case 'MOIST':              return {text:'Niiske',       cls:'warn'};
-    case 'WET':                return {text:'M\u00e4rg',   cls:'warn'};
-    case 'MOIST_AND_CHEMICAL': return {text:'Soolaniiske',  cls:'warn'};
-    case 'WET_AND_CHEMICAL':   return {text:'Soolam\u00e4rg', cls:'warn'};
-    default:{const c=String(val).toLowerCase().replace(/_/g,' ');return {text:c.charAt(0).toUpperCase()+c.slice(1),cls:'unknown'};}
-  }
-}
-function isSlippery(sc){return sc.cls==='danger'||sc.cls==='orange';}
-function tempColor(t){
-  if(t===null||t===undefined) return '';
-  if(t<-5) return 'danger';
-  if(t<0)  return 'orange';
-  if(t<3)  return 'warn';
-  return 'ok';
-}
-function stationIconColor(surface,roadTemp){
-  const s=surfaceLabel(surface);
-  if(s.cls==='danger') return '#c0392b';
-  if(s.cls==='orange') return '#d35400';
-  if(s.cls==='warn')   return '#c47a00';
-  if(roadTemp!=null&&roadTemp<0) return '#d35400';
-  return '#2a7d3f';
-}
-
-// ─── Render ──────────────────────────────────────────────────────────────────
-function renderStations(stations){
-  const panel=document.getElementById('stations-panel');
-  panel.innerHTML='';
-  if(!stations.length){
-    panel.innerHTML='<div class="empty-state"><div class="empty-icon">&#128269;</div><div>Marsruudi l&#228;hedal (300 m) ei leitud &#252;htegi ilmajaama.</div></div>';
-    return;
-  }
-  const hdr=document.createElement('div');
-  hdr.className='section-header';
-  hdr.textContent=`${stations.length} jaam${stations.length!==1?'a':''} marsruudil`;
-  panel.appendChild(hdr);
-
-  const table=document.createElement('table');
-  table.className='stations-table';
-  table.innerHTML='<colgroup><col/><col/><col/><col/></colgroup><thead><tr><th>Jaam</th><th>Tee temp</th><th>&#213;hu temp</th><th>Teekate</th></tr></thead><tbody id="stations-tbody"></tbody>';
-  panel.appendChild(table);
-  const tbody=table.querySelector('#stations-tbody');
-
-  stations.forEach((s,idx)=>{
-    const a=s.attributes;
-    const name=a.site_name||'Jaam';
-    const road=a.road_name||'';
-    const rtNum=a.road_temp!=null?parseFloat(a.road_temp):null;
-    const atNum=a.air_temp!=null?parseFloat(a.air_temp):null;
-    const sc=surfaceLabel(a.road_status);
-    const slip=isSlippery(sc);
-    const iconColor=stationIconColor(a.road_status,rtNum);
-
-    const tr=document.createElement('tr');
-    if(slip) tr.classList.add('slippery');
-    if(idx===0) tr.classList.add('active');
-    tr.innerHTML=
-      '<td class="td-name">'+(idx===0?'<span class="next-chip">J&#196;RGMINE</span>':'')+name+(slip?'<span class="slippery-flag" title="Libe tee">&#9888;&#65039;</span>':'')+'<div class="td-road">'+road+'</div></td>'+
-      '<td class="td-temp '+(rtNum!==null?tempColor(rtNum):'')+'">'+( rtNum!==null?rtNum.toFixed(1)+'&deg;C':'&mdash;')+'</td>'+
-      '<td class="td-temp '+(atNum!==null?tempColor(atNum):'')+'">'+( atNum!==null?atNum.toFixed(1)+'&deg;C':'&mdash;')+'</td>'+
-      '<td><span class="surface-pill pill-'+sc.cls+'">'+sc.text+'</span></td>';
-    tr.addEventListener('click',()=>{
-      document.querySelectorAll('.stations-table tbody tr').forEach(r=>r.classList.remove('active'));
-      tr.classList.add('active');
-      map.setView([s._lat,s._lng],13);
-      stationMarkers[idx]?.openPopup();
-    });
-    tbody.appendChild(tr);
-
-    const marker=L.marker([s._lat,s._lng],{icon:stationIcon(iconColor)}).addTo(map);
-    marker.bindPopup(
-      '<div style="font-family:Arial,sans-serif;font-size:12px;min-width:150px">'+
-      '<b style="font-size:13px">'+name+'</b>'+
-      '<div style="color:#888;margin:4px 0 8px">'+road+'</div>'+
-      '<div><b>Tee temp:</b> '+(rtNum!==null?rtNum.toFixed(1)+'&deg;C':'&mdash;')+'</div>'+
-      '<div><b>&Otilde;hu temp:</b> '+(atNum!==null?atNum.toFixed(1)+'&deg;C':'&mdash;')+'</div>'+
-      '<div><b>Teekate:</b> '+sc.text+(slip?' &#9888;':'')+'</div></div>'
-    );
-    stationMarkers.push(marker);
-  });
-}
-
-// ─── Main ────────────────────────────────────────────────────────────────────
-async function planRoute(){
-  const apiKey=document.getElementById('ors-key').value.trim();
-  const origin=document.getElementById('origin').value.trim();
-  const dest=document.getElementById('dest').value.trim();
-  if(!origin||!dest){showToast('Palun sisesta algus- ja sihtpunkt');return;}
-
-  if(routeLayer){map.removeLayer(routeLayer);routeLayer=null;}
-  stationMarkers.forEach(m=>map.removeLayer(m));
-  stationMarkers=[];
-
-  const btn=document.getElementById('go-btn');
-  btn.disabled=true;
-  try{
-    setLoading(true,'Geokodeerin asukohti...');
-    const [oCoord,dCoord]=await Promise.all([geocode(origin,apiKey),geocode(dest,apiKey)]);
-
-    setLoading(true,'Arvutan marsruuti...');
-    const routeData=await getRoute(oCoord,dCoord,apiKey);
-    const feat=routeData.features[0];
-    const coords=feat.geometry.coordinates;
-    const summary=feat.properties.summary;
-
-    routeLayer=L.geoJSON(routeData,{style:{color:'#2a7d3f',weight:5,opacity:0.75}}).addTo(map);
-    map.invalidateSize();
-    map.fitBounds(routeLayer.getBounds(),{padding:[40,40]});
-
-    const km=(summary.distance/1000).toFixed(0);
-    const mins=Math.round(summary.duration/60);
-    document.getElementById('sum-dist').textContent=km+' km';
-    document.getElementById('sum-time').textContent=mins>=60?Math.floor(mins/60)+'h '+(mins%60)+'min':mins+' min';
-
-    setLoading(true,'Laen Tarktee ilmajaamade andmeid...');
-    const tarkteeData=await fetchWeatherStations();
-
-    const MAX_DIST_M=300;
-    const matched=[];
-    for(const f of tarkteeData.features){
-      const g=f.geometry;
-      if(!g) continue;
-      const [lat,lng]=lcc3301ToWgs84(g.x,g.y);
-      if(isNaN(lat)||isNaN(lng)) continue;
-      const {distM,routeIdx}=stationDistToRoute(lat,lng,coords);
-      if(distM<=MAX_DIST_M) matched.push({...f,_lat:lat,_lng:lng,_distM:distM,_routeIdx:routeIdx});
+  // ─── EPSG:3301 (Estonian grid) → WGS84 ────────────────────────────────────
+  function lcc3301ToWgs84(x, y) {
+    var a = 6378137.0, f = 1 / 298.257222101;
+    var b = a * (1 - f), e2 = 1 - (b * b) / (a * a), e = Math.sqrt(e2);
+    var phi1 = 58.0 * Math.PI / 180, phi2 = 59.333333333 * Math.PI / 180;
+    var phi0 = 57.517553 * Math.PI / 180, lam0 = 24.0 * Math.PI / 180;
+    var FE = 500000, FN = 6375000;
+    function m(p) { return Math.cos(p) / Math.sqrt(1 - e2 * Math.pow(Math.sin(p), 2)); }
+    function t(p) { var s = Math.sin(p); return Math.tan(Math.PI / 4 - p / 2) / Math.pow((1 - e * s) / (1 + e * s), e / 2); }
+    var m1 = m(phi1), m2 = m(phi2), t1 = t(phi1), t2 = t(phi2), t0 = t(phi0);
+    var n = (Math.log(m1) - Math.log(m2)) / (Math.log(t1) - Math.log(t2));
+    var F = m1 / (n * Math.pow(t1, n)), r0 = a * F * Math.pow(t0, n);
+    var xp = x - FE, yp = y - FN;
+    var r = Math.sign(n) * Math.sqrt(xp * xp + (r0 - yp) * (r0 - yp));
+    var theta = Math.atan2(xp, r0 - yp);
+    var tt = Math.pow(r / (a * F), 1 / n);
+    var phi = Math.PI / 2 - 2 * Math.atan(tt);
+    for (var i = 0; i < 10; i++) {
+      var s = Math.sin(phi);
+      phi = Math.PI / 2 - 2 * Math.atan(tt * Math.pow((1 - e * s) / (1 + e * s), e / 2));
     }
-    matched.sort((a,b)=>a._routeIdx-b._routeIdx);
-
-    document.getElementById('sum-stations').textContent=matched.length;
-    document.getElementById('route-summary').classList.add('visible');
-    renderStations(matched);
-
-  }catch(err){
-    showToast(err.message||'Viga');
-  }finally{
-    setLoading(false);
-    btn.disabled=false;
+    return [phi * 180 / Math.PI, (theta / n + lam0) * 180 / Math.PI];
   }
-}
 
-function setLoading(show,text=''){
-  const el=document.getElementById('loading');
-  document.getElementById('loading-text').textContent=text;
-  el.classList.toggle('show',show);
-}
-function showToast(msg){
-  const t=document.getElementById('toast');
-  t.textContent=msg;t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'),4000);
-}
+  // ─── Map ──────────────────────────────────────────────────────────────────
+  var map = L.map('map', { zoomControl: true, tap: true });
+  var CARTO_KEY = 'cb1_5g16_1_a71c6908e364ee350897159a';
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png?key=' + CARTO_KEY, {
+    attribution: '&copy; OpenStreetMap &copy; CARTO', maxZoom: 18
+  }).addTo(map);
+  map.setView([58.7, 25.3], 7);
 
-document.getElementById('go-btn').addEventListener('click',planRoute);
-document.querySelectorAll('.route-input').forEach(inp=>{
-  inp.addEventListener('keydown',e=>{if(e.key==='Enter')planRoute();});
-});
+  var routeLayer = null;
+  var stationMarkers = [];
+  var gpsMarker = null;
+  var gpsCoord = null;        // [lng, lat] when "my location" is used
 
-}); // end DOMContentLoaded
+  function stationIcon(color) {
+    return L.divIcon({
+      className: '',
+      html: '<div style="width:16px;height:16px;border-radius:50%;background:' + color +
+            ';border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,0.3)"></div>',
+      iconSize: [16, 16], iconAnchor: [8, 8]
+    });
+  }
+
+  // Keep Leaflet sized correctly on rotation / browser bar changes
+  var resizeTimer;
+  window.addEventListener('resize', function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function () { map.invalidateSize(); }, 150);
+  });
+
+  // ─── Network helper with timeout ──────────────────────────────────────────
+  // Timeout via Promise.race (no AbortSignal: some embedded viewers can't pass it on)
+  // Wraps fetch so a network failure names the service that failed
+  function fetchFrom(label, url, opts) {
+    return fetchWithTimeout(url, opts).catch(function (err) {
+      if (err && err.name === 'AbortError') throw new Error(label + ': päring aegus');
+      throw new Error(label + ': ühendus ebaõnnestus (' + (err && err.message || 'viga') + ')');
+    });
+  }
+
+  function fetchWithTimeout(url, opts) {
+    var id;
+    var timeout = new Promise(function (_, reject) {
+      id = setTimeout(function () {
+        var e = new Error('Päring aegus. Proovi uuesti.');
+        e.name = 'AbortError';
+        reject(e);
+      }, TIMEOUT_MS);
+    });
+    return Promise.race([fetch(url, opts || {}), timeout])
+      .finally(function () { clearTimeout(id); });
+  }
+
+  // ─── OpenRouteService ─────────────────────────────────────────────────────
+  async function geocode(text) {
+    var url = 'https://api.heigit.org/pelias/v1/search?api_key=' + ORS_KEY +
+              '&text=' + encodeURIComponent(text) + '&boundary.country=EE&size=1';
+    var r = await fetchFrom('Asukohaotsing (OpenRouteService)', url);
+    if (!r.ok) throw new Error('Asukohaotsing (OpenRouteService): HTTP ' + r.status);
+    var d = await r.json();
+    if (!d.features || !d.features.length) throw new Error('Asukohta ei leitud: ' + text);
+    return d.features[0].geometry.coordinates; // [lng, lat]
+  }
+
+  async function getRoute(oCoord, dCoord) {
+    var r = await fetchFrom('Marsruut (OpenRouteService)', 'https://api.heigit.org/openrouteservice/v2/directions/driving-car/geojson', {
+      method: 'POST',
+      headers: { 'Authorization': ORS_KEY, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ coordinates: [oCoord, dCoord] })
+    });
+    if (!r.ok) {
+      var e = await r.json().catch(function () { return {}; });
+      throw new Error('Marsruut (OpenRouteService): ' + ((e.error && e.error.message) || 'HTTP ' + r.status));
+    }
+    return r.json();
+  }
+
+  // ─── Tarktee (unchanged endpoint) ─────────────────────────────────────────
+  async function fetchLayer(urls) {
+    var lastErr;
+    for (var i = 0; i < urls.length; i++) {
+      try {
+        var r = await fetchWithTimeout(urls[i]);
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        var data = await r.json();
+        if (data.error) throw new Error(data.error.message || 'teenuse viga');
+        if (!data.features || !data.features.length) throw new Error('andmed puuduvad');
+        return data;
+      } catch (err) {
+        lastErr = err;   // try the next address
+      }
+    }
+    throw lastErr || new Error('viga');
+  }
+
+  async function fetchWeatherStations() {
+    try {
+      return await fetchLayer(TARKTEE_URLS);
+    } catch (err) {
+      throw new Error('Tarktee: andmete laadimine ebaõnnestus (' + (err && err.message || 'viga') + ')');
+    }
+  }
+
+  // Camera layer is a bonus: if it fails, the app still shows weather stations
+  async function fetchCameraStations() {
+    try {
+      var data = await fetchLayer(TARKTEE_CAMERA_URLS);
+      return data.features.filter(function (f) {
+        var a = f.attributes || {};
+        return a.road_temp != null || a.air_temp != null || a.road_status;
+      }).map(function (f) {
+        var a = f.attributes;
+        return {
+          geometry: f.geometry,
+          attributes: {
+            site_name: a.site_name,
+            road_temp: a.road_temp,
+            air_temp: a.air_temp,
+            road_status: a.road_status,
+            measurement_time: a.weather_time,
+            _camera: true,
+            _via: a.closest_weather_station,
+            _viaDist: a.distance
+          }
+        };
+      });
+    } catch (err) {
+      return [];
+    }
+  }
+
+  // ─── Geometry ─────────────────────────────────────────────────────────────
+  // Distance from point to segment, plus how far along the segment (0..1) the closest point is
+  function ptSeg(px, py, ax, ay, bx, by) {
+    var dx = bx - ax, dy = by - ay;
+    var t = (dx === 0 && dy === 0) ? 0 :
+      Math.max(0, Math.min(1, ((px - ax) * dx + (py - ay) * dy) / (dx * dx + dy * dy)));
+    return { d: Math.hypot(px - ax - t * dx, py - ay - t * dy), t: t };
+  }
+  var LAT_M = 111320, LNG_M = 111320 * Math.cos(58.8 * Math.PI / 180);
+  // routeIdx = segment index + position within it, so stations sort in driving order
+  function stationDistToRoute(sLat, sLng, coords) {
+    var best = { d: Infinity, pos: 0 };
+    for (var i = 0; i < coords.length - 1; i++) {
+      var A = coords[i], B = coords[i + 1];
+      var r = ptSeg(sLng * LNG_M, sLat * LAT_M, A[0] * LNG_M, A[1] * LAT_M, B[0] * LNG_M, B[1] * LAT_M);
+      if (r.d < best.d - 0.01) best = { d: r.d, pos: i + r.t };
+    }
+    return { distM: best.d, routeIdx: best.pos };
+  }
+
+  // ─── Conditions (official Tarktee wording) ────────────────────────────────
+  function surfaceLabel(val) {
+    if (val === null || val === undefined || val === '') return { text: 'Teadmata', cls: 'unknown' };
+    switch (String(val).toUpperCase()) {
+      case 'DRY':                return { text: 'Kuiv',        cls: 'ok' };
+      case 'MOIST':              return { text: 'Niiske',      cls: 'warn' };
+      case 'WET':                return { text: 'Märg',        cls: 'warn' };
+      case 'MOIST_AND_CHEMICAL': return { text: 'Soolaniiske', cls: 'warn' };
+      case 'WET_AND_CHEMICAL':   return { text: 'Soolamärg',   cls: 'warn' };
+      default: {
+        var c = String(val).toLowerCase().replace(/_/g, ' ');
+        return { text: c.charAt(0).toUpperCase() + c.slice(1), cls: 'unknown' };
+      }
+    }
+  }
+  function isSlippery(sc) { return sc.cls === 'danger' || sc.cls === 'orange'; }
+  function tempColor(t) {
+    if (t === null || t === undefined || isNaN(t)) return '';
+    if (t < -5) return 'danger';
+    if (t < 0)  return 'orange';
+    if (t < 3)  return 'warn';
+    return 'ok';
+  }
+  function stationIconColor(sc, roadTemp) {
+    if (sc.cls === 'danger') return '#c0392b';
+    if (sc.cls === 'orange') return '#d35400';
+    if (roadTemp !== null && roadTemp < 0) return '#d35400';
+    if (sc.cls === 'warn') return '#c47a00';
+    return '#2a7d3f';
+  }
+  function fmtTemp(t) { return t === null || isNaN(t) ? '—' : t.toFixed(1); }
+  var STALE_MS = 60 * 60 * 1000;   // readings older than 1 h are treated as outdated
+  function pad(n) { return ('0' + n).slice(-2); }
+  function isStale(ms) { return !ms || (Date.now() - ms) > STALE_MS; }
+  // "kell 14:30" for recent readings, "25.11 14:30" otherwise
+  function fmtTime(ms) {
+    if (!ms) return 'aeg teadmata';
+    var d = new Date(ms), now = new Date();
+    var hm = pad(d.getHours()) + ':' + pad(d.getMinutes());
+    var sameDay = d.toDateString() === now.toDateString();
+    return sameDay ? 'kell ' + hm : pad(d.getDate()) + '.' + pad(d.getMonth() + 1) + '.' + d.getFullYear() + ' ' + hm;
+  }
+  function fmtAge(ms) {
+    if (!ms) return '';
+    var min = Math.round((Date.now() - ms) / 60000);
+    if (min < 60) return min + ' min tagasi';
+    var h = Math.round(min / 60);
+    if (h < 48) return h + ' h tagasi';
+    return Math.round(h / 24) + ' päeva tagasi';
+  }
+  function esc(s) {
+    return String(s).replace(/[&<>"']/g, function (ch) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch];
+    });
+  }
+
+  // ─── Render ───────────────────────────────────────────────────────────────
+  function renderStations(stations) {
+    var panel = document.getElementById('stations-panel');
+    panel.innerHTML = '';
+    if (!stations.length) {
+      panel.innerHTML = '<div class="empty-state"><div class="empty-icon">🔍</div>' +
+        '<div>Marsruudi lähedal (300 m) ei leitud ühtegi teeilmajaama.</div></div>';
+      return;
+    }
+
+    var hdr = document.createElement('div');
+    hdr.className = 'section-header';
+    hdr.textContent = stations.length + (stations.length === 1 ? ' jaam' : ' jaama') + ' sõidusuunas';
+    panel.appendChild(hdr);
+
+    var table = document.createElement('table');
+    table.className = 'stations-table';
+    table.innerHTML =
+      '<colgroup><col class="c-name"><col class="c-rt"><col class="c-at"><col class="c-surf"></colgroup>' +
+      '<thead><tr><th>Jaam</th><th class="num">Tee °C</th><th class="num">Õhk °C</th><th>Teekate</th></tr></thead>' +
+      '<tbody></tbody>';
+    panel.appendChild(table);
+    var tbody = table.querySelector('tbody');
+
+    var nextIdx = stations.findIndex(function (st) { return !isStale(st.attributes.measurement_time); });
+
+    stations.forEach(function (s, idx) {
+      var a = s.attributes;
+      var name = a.site_name || 'Jaam';
+      var rt = a.road_temp != null ? parseFloat(a.road_temp) : null;
+      var at = a.air_temp != null ? parseFloat(a.air_temp) : null;
+      var sc = surfaceLabel(a.road_status);
+      var slip = isSlippery(sc);
+      var stale = isStale(a.measurement_time);
+      var time = fmtTime(a.measurement_time);
+      var age = fmtAge(a.measurement_time);
+      // Camera readings may come from a nearby weather station
+      var viaNote = (a._camera && a._via && a._via !== name && a._viaDist > 0)
+        ? 'andmed: ' + a._via + ' (' + (+a._viaDist).toFixed(1) + ' km)' : '';
+      if (stale) slip = false;
+
+      var tr = document.createElement('tr');
+      if (slip) tr.classList.add('slippery');
+      if (stale) tr.classList.add('stale');
+      if (idx === nextIdx) tr.classList.add('active');
+      tr.innerHTML =
+        '<td class="td-name">' +
+          (idx === nextIdx ? '<span class="next-chip">JÄRGMINE</span><br>' : '') +
+          esc(name) + (a._camera ? ' 📷' : '') + (slip ? ' ⚠️' : '') +
+          '<div class="td-time' + (stale ? ' old' : '') + '">' +
+            (stale ? 'Vananenud · ' : '') + time + '</div>' +
+          (viaNote ? '<div class="td-time">' + esc(viaNote) + '</div>' : '') +
+        '</td>' +
+        '<td class="td-temp num ' + tempColor(rt) + '">' + fmtTemp(rt) + '</td>' +
+        '<td class="td-temp num ' + tempColor(at) + '">' + fmtTemp(at) + '</td>' +
+        '<td><span class="surface-pill pill-' + sc.cls + '">' + esc(sc.text) + '</span></td>';
+
+      tr.addEventListener('click', function () {
+        tbody.querySelectorAll('tr').forEach(function (r) { r.classList.remove('active'); });
+        tr.classList.add('active');
+        map.setView([s._lat, s._lng], 13);
+        if (stationMarkers[idx]) stationMarkers[idx].openPopup();
+        // On phones, bring the map back into view
+        if (window.innerWidth < 768) window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+      tbody.appendChild(tr);
+
+      var marker = L.marker([s._lat, s._lng], {
+        icon: stationIcon(stale ? '#a3a9bb' : stationIconColor(sc, rt))
+      }).addTo(map);
+      marker.bindPopup(
+        '<b style="font-size:14px">' + esc(name) + (a._camera ? ' 📷' : '') + '</b>' +
+        (viaNote ? '<div style="color:#6b7391">' + esc(viaNote) + '</div>' : '') +
+        '<div style="color:' + (stale ? '#c0392b' : '#6b7391') + ';margin:2px 0 6px">' +
+          (stale ? '<b>Vananenud andmed</b> · ' : 'Mõõdetud ') + time + (age ? ' (' + age + ')' : '') + '</div>' +
+        '<div><b>Tee temp:</b> ' + fmtTemp(rt) + ' °C</div>' +
+        '<div><b>Õhu temp:</b> ' + fmtTemp(at) + ' °C</div>' +
+        '<div><b>Teekate:</b> ' + esc(sc.text) + (slip ? ' ⚠️' : '') + '</div>'
+      );
+      stationMarkers.push(marker);
+    });
+  }
+
+  // ─── "My location" ────────────────────────────────────────────────────────
+  var originInput = document.getElementById('origin');
+  var gpsBtn = document.getElementById('gps-btn');
+
+  function clearGps() {
+    gpsCoord = null;
+    gpsBtn.classList.remove('active');
+    originInput.classList.remove('gps');
+  }
+
+  gpsBtn.addEventListener('click', function () {
+    if (!('geolocation' in navigator)) { showToast('Seade ei toeta asukoha määramist'); return; }
+    gpsBtn.disabled = true;
+    setLoading(true, 'Määran asukohta…');
+    navigator.geolocation.getCurrentPosition(function (pos) {
+      gpsCoord = [pos.coords.longitude, pos.coords.latitude];
+      originInput.value = 'Minu asukoht';
+      originInput.classList.add('gps');
+      gpsBtn.classList.add('active');
+      if (gpsMarker) map.removeLayer(gpsMarker);
+      gpsMarker = L.circleMarker([gpsCoord[1], gpsCoord[0]], {
+        radius: 8, color: '#fff', weight: 3, fillColor: '#1a73e8', fillOpacity: 1
+      }).addTo(map);
+      map.setView([gpsCoord[1], gpsCoord[0]], 11);
+      setLoading(false);
+      gpsBtn.disabled = false;
+    }, function (err) {
+      setLoading(false);
+      gpsBtn.disabled = false;
+      showToast(err.code === 1
+        ? 'Asukoha luba puudub. Luba see brauseri seadetes.'
+        : 'Asukohta ei õnnestunud määrata');
+    }, { enableHighAccuracy: true, timeout: 15000, maximumAge: 60000 });
+  });
+
+  originInput.addEventListener('input', clearGps);
+  originInput.addEventListener('focus', function () {
+    if (gpsCoord) { originInput.value = ''; clearGps(); }
+  });
+
+  // ─── Main flow ────────────────────────────────────────────────────────────
+  async function planRoute() {
+    var origin = originInput.value.trim();
+    var dest = document.getElementById('dest').value.trim();
+    if ((!origin && !gpsCoord) || !dest) { showToast('Palun sisesta algus- ja sihtpunkt'); return; }
+
+    document.activeElement && document.activeElement.blur(); // close phone keyboard
+
+    if (routeLayer) { map.removeLayer(routeLayer); routeLayer = null; }
+    stationMarkers.forEach(function (m) { map.removeLayer(m); });
+    stationMarkers = [];
+
+    var btn = document.getElementById('go-btn');
+    btn.disabled = true;
+    try {
+      setLoading(true, 'Otsin asukohti…');
+      var coords2 = await Promise.all([
+        gpsCoord ? Promise.resolve(gpsCoord) : geocode(origin),
+        geocode(dest)
+      ]);
+
+      setLoading(true, 'Arvutan marsruuti…');
+      var routeData = await getRoute(coords2[0], coords2[1]);
+      var feat = routeData.features[0];
+      var coords = feat.geometry.coordinates;
+      var summary = feat.properties.summary;
+
+      routeLayer = L.geoJSON(routeData, { style: { color: '#2a7d3f', weight: 5, opacity: 0.75 } }).addTo(map);
+      map.invalidateSize();
+      map.fitBounds(routeLayer.getBounds(), { padding: [24, 24] });
+
+      var km = Math.round(summary.distance / 1000);
+      var mins = Math.round(summary.duration / 60);
+      document.getElementById('sum-dist').textContent = km + ' km';
+      document.getElementById('sum-time').textContent =
+        mins >= 60 ? Math.floor(mins / 60) + ' h ' + (mins % 60) + ' min' : mins + ' min';
+
+      setLoading(true, 'Laen Tarktee ilmajaamade ja kaamerate andmeid…');
+      var results = await Promise.all([fetchWeatherStations(), fetchCameraStations()]);
+      var stationFeatures = results[0].features;
+      var cameraFeatures = results[1];
+
+      // Skip camera sites that just repeat a weather station already in the list
+      var stationNames = {};
+      stationFeatures.forEach(function (f) {
+        if (f.attributes && f.attributes.site_name) stationNames[f.attributes.site_name.toLowerCase()] = true;
+      });
+      var seenCam = {};
+      cameraFeatures = cameraFeatures.filter(function (f) {
+        var a = f.attributes;
+        var own = (a.site_name || '').toLowerCase();
+        var via = (a._via || '').toLowerCase();
+        if (stationNames[own]) return false;                       // same site, same name
+        if (via && stationNames[via] && !a._viaDist) return false;  // same site, other name
+        if (seenCam[own]) return false;
+        seenCam[own] = true;
+        return true;
+      });
+
+      var matched = [];
+      stationFeatures.concat(cameraFeatures).forEach(function (f) {
+        var g = f.geometry;
+        if (!g) return;
+        var ll = lcc3301ToWgs84(g.x, g.y);
+        if (isNaN(ll[0]) || isNaN(ll[1])) return;
+        var res = stationDistToRoute(ll[0], ll[1], coords);
+        if (res.distM <= MAX_DIST_M) {
+          matched.push({ attributes: f.attributes, _lat: ll[0], _lng: ll[1], _distM: res.distM, _routeIdx: res.routeIdx });
+        }
+      });
+      matched.sort(function (a, b) { return a._routeIdx - b._routeIdx; });
+
+      var staleCount = matched.filter(function (m) { return isStale(m.attributes.measurement_time); }).length;
+      document.getElementById('sum-stations').textContent =
+        matched.length + (matched.length === 1 ? ' jaam' : ' jaama') +
+        (staleCount ? ' (' + staleCount + ' vananenud)' : '');
+      document.getElementById('route-summary').classList.add('visible');
+      renderStations(matched);
+
+    } catch (err) {
+      showToast(err.name === 'AbortError' ? 'Päring aegus. Proovi uuesti.' : (err.message || 'Viga'));
+    } finally {
+      setLoading(false);
+      btn.disabled = false;
+    }
+  }
+
+  // ─── UI helpers ───────────────────────────────────────────────────────────
+  function setLoading(show, text) {
+    document.getElementById('loading-text').textContent = text || '';
+    document.getElementById('loading').classList.toggle('show', show);
+  }
+  var toastTimer;
+  function showToast(msg) {
+    var t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { t.classList.remove('show'); }, 4500);
+  }
+
+  document.getElementById('go-btn').addEventListener('click', planRoute);
+  originInput.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') { e.preventDefault(); document.getElementById('dest').focus(); }
+  });
+  document.getElementById('dest').addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') { e.preventDefault(); planRoute(); }
+  });
+})();
 </script>
 </body>
 </html>
