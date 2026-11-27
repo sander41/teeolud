@@ -12,6 +12,9 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAACa0lEQVR42u3csU0DQRBA0cFQDQWQOqIVeiAgpgdaISKlJyQCRIB0gGzNrm9n3k/BdxJ+mjO367u6fTqGtNXBn0BwCA7BITgEh+AQHIJDcAgOCQ7BITgEh+AQHIJDcAgOwSF9d+NPsLdePt5++9HD9REOJv75nTlK4FiDxeZLRhOBYzEWM4n4QLqqjPTjwFFNxlAfcCwvY9wx4aggY9CR4SgiY8Tx4agjI/0scAiOHmMj91xwCI42YyPxjHAIDsHhmpJ4XjgUlux/9P74eupL7p7vXVYkOASH4BAcgmNv/6qc/So49FeTv4mUeF44BIfgcGVJPCMcgqPT8Mg6FxyCo83wSDwLHKV85B4fjjo+0o8MRxEfI455sLASl1heyX0vB00jk2P5+THuOuWxT7G5RXTOGuzX+3r2NnHPBOsyQk4i4mmCTa8ynkOq3e3/8IFUcAgOwSE4BIfgiGILK9Hv2ysmh+AQHIJDcAgOwSE4FB41Ge6PmRyCw2wwY0wOwSE4BIfgEByCQ3AIDsEhwSE4YsCCSJPlFZNDYT9H7PCxTyaH4BAcgkOCQ3AIDsEhOARHrPhttg63UE0OwSE4BIfgEByCQ3AobBMMN8pMDsFhJBg2JofgEByCQ3AIDsEhOASH4JDgUHMco5c/ai+vmBwK+znCY59MDsEhOASH4BAcgkNwCA6pEY45dzkL30s1OQSH4BAcgkNwCA7BobBNMNwxMzkEh0lg6pgcgkNwCA7BITgEh+AQHIJDgkM9ccxf7Ci5vGJyKOznCI99MjkEh+AQHIJDcAgOwSE4pPo4LnVzs95NVZNDcAgOwaEZfQKHhJveXWnDVgAAAABJRU5ErkJggg==">
 <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAACa0lEQVR42u3csU0DQRBA0cFQDQWQOqIVeiAgpgdaISKlJyQCRIB0gGzNrm9n3k/BdxJ+mjO367u6fTqGtNXBn0BwCA7BITgEh+AQHIJDcAgOCQ7BITgEh+AQHIJDcAgOwSF9d+NPsLdePt5++9HD9REOJv75nTlK4FiDxeZLRhOBYzEWM4n4QLqqjPTjwFFNxlAfcCwvY9wx4aggY9CR4SgiY8Tx4agjI/0scAiOHmMj91xwCI42YyPxjHAIDsHhmpJ4XjgUlux/9P74eupL7p7vXVYkOASH4BAcgmNv/6qc/So49FeTv4mUeF44BIfgcGVJPCMcgqPT8Mg6FxyCo83wSDwLHKV85B4fjjo+0o8MRxEfI455sLASl1heyX0vB00jk2P5+THuOuWxT7G5RXTOGuzX+3r2NnHPBOsyQk4i4mmCTa8ynkOq3e3/8IFUcAgOwSE4BIfgiGILK9Hv2ysmh+AQHIJDcAgOwSE4FB41Ge6PmRyCw2wwY0wOwSE4BIfgEByCQ3AIDsEhwSE4YsCCSJPlFZNDYT9H7PCxTyaH4BAcgkOCQ3AIDsEhOARHrPhttg63UE0OwSE4BIfgEByCQ3AobBMMN8pMDsFhJBg2JofgEByCQ3AIDsEhOASH4JDgUHMco5c/ai+vmBwK+znCY59MDsEhOASH4BAcgkNwCA6pEY45dzkL30s1OQSH4BAcgkNwCA7BobBNMNwxMzkEh0lg6pgcgkNwCA7BITgEh+AQHIJDgkM9ccxf7Ci5vGJyKOznCI99MjkEh+AQHIJDcAgOwSE4pPo4LnVzs95NVZNDcAgOwaEZfQKHhJveXWnDVgAAAABJRU5ErkJggg==">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <style>
@@ -33,7 +36,7 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Nunito', Arial, Helvetica, sans-serif;
     background: var(--bg);
     color: var(--text);
     min-height: 100vh;
@@ -214,7 +217,7 @@
   }
   #toast.show { transform: translateX(-50%) translateY(0); opacity: 1; visibility: visible; }
 
-  .leaflet-popup-content { font-family: Arial, Helvetica, sans-serif; font-size: 13px; }
+  .leaflet-popup-content { font-family: 'Nunito', Arial, Helvetica, sans-serif; font-size: 13px; }
 
 
   /* ───────── Planning screen: driving controls ───────── */
@@ -234,56 +237,65 @@
 
   /* ───────── Driving mode — design B (fixed layout, no scrolling, no animation) ───────── */
   #drive {
-    --bg: #131519; --fg: #ECEAE3; --fg2: #C9C7C0; --btn: #23262D; --btn-border: #6A6E78; --empty: #2A2D33;
-    --none-bg: #4A4E57; --none-fg: #ECEAE3; --bad: #FF8F80; --brand: #8FD3A8;
+    --bg: #0E1013; --fg: #ECEAE3; --fg2: #D9D7D0; --fg3: #8A8F9B; --btn: #1C1F25; --line: #2A2E36;
+    --none-bg: #4A4E57; --none-fg: #ECEAE3; --bad: #FF8F80;
+    --q-ice: #F07A6A; --q-warn: #E0B04A; --q-none: #A3A8B3;
     position: fixed; inset: 0; z-index: 5000;
     background: var(--bg); color: var(--fg);
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Nunito', Arial, Helvetica, sans-serif;
     font-variant-numeric: tabular-nums; font-feature-settings: "tnum" 1;
     display: none;
     grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: auto minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) auto auto;
-    gap: 8px; overflow: hidden;
-    padding: calc(8px + var(--safe-t)) calc(10px + var(--safe-r)) calc(10px + var(--safe-b)) calc(10px + var(--safe-l));
+    grid-template-rows: minmax(0, 1.7fr) minmax(0, 1fr) minmax(0, 1fr) auto auto;
+    gap: 10px; overflow: hidden;
+    padding: calc(10px + var(--safe-t)) calc(12px + var(--safe-r)) calc(12px + var(--safe-b)) calc(12px + var(--safe-l));
   }
   #drive.light {
-    --bg: #F4F1EA; --fg: #1A1D22; --fg2: #3A3F4B; --btn: #E4E0D6; --btn-border: #A8ABB3; --empty: #D6D2C8;
-    --none-bg: #6B6F78; --none-fg: #F4F1EA; --bad: #B3261E; --brand: #2A7D3F;
+    --bg: #F4F1EA; --fg: #1A1D22; --fg2: #2B2F38; --fg3: #5E6370; --btn: #E4E0D6; --line: #D2CDC1;
+    --none-bg: #6B6F78; --none-fg: #F4F1EA; --bad: #B3261E;
+    --q-ice: #B3261E; --q-warn: #8A5A00; --q-none: #5E6370;
   }
   #drive.on { display: grid; }
   #drive > * { min-width: 0; min-height: 0; }
   .d-fit { display: block; white-space: nowrap; overflow: hidden; text-overflow: clip; line-height: 1.08; }
-  .d-top { display: flex; align-items: center; gap: 10px; }
-  .d-top-text { flex: 1; min-width: 0; }
-  .d-brand { font-weight: 700; color: var(--brand); font-size: 20px; }
-  .d-dest { color: var(--fg2); font-size: 18px; }
+  .d-band {
+    border-radius: 24px; padding: 12px 18px;
+    display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-rows: auto auto auto;
+    column-gap: 12px; align-content: center; overflow: hidden;
+  }
+  .d-band .b-word  { grid-column: 1 / span 2; grid-row: 1; font-weight: 800; letter-spacing: 0.04em; display: flex; align-items: center; gap: 0.35em; min-width: 0; }
+  .d-band .b-word svg { width: 1.05em; height: 1.05em; flex-shrink: 0; display: block; }
+  .d-band .b-word .b-wtext { min-width: 0; flex: 1; }
+  .d-band .b-dist  { grid-column: 1; grid-row: 2; font-weight: 800; }
+  .d-band .b-det   { grid-column: 1; grid-row: 3; margin-top: 4px; }
+  .d-band .b-temp  { grid-column: 2; grid-row: 2 / span 2; font-weight: 800; text-align: right; align-self: end; line-height: 1; }
+  .d-band.no-word .b-word { display: none; }
+  /* Full colour: top block only */
+  .b-ice   { background: #C2352B; color: #FFFFFF; }
+  .b-ice .b-det { color: #FFE1DB; }
+  .b-warn  { background: #E0A526; color: #1C1500; }
+  .b-warn .b-det { color: #4A3A08; }
+  .b-none  { background: var(--none-bg); color: var(--none-fg); }
+  /* Quiet rows: outline only, small coloured status word when needed */
+  .b-quiet { background: transparent; border: 1px solid var(--line); color: var(--fg2); }
+  .b-quiet .b-det, .b-quiet .b-temp { color: var(--fg3); }
+  .b-quiet.q-ice .b-word  { color: var(--q-ice); }
+  .b-quiet.q-warn .b-word { color: var(--q-warn); }
+  .b-quiet.q-none .b-word { color: var(--q-none); }
+  .b-empty { background: transparent; border: 1px dashed var(--line); color: var(--fg3); }
+  .d-bar { display: flex; align-items: center; gap: 12px; color: var(--fg3); }
   .d-theme {
-    width: 56px; height: 56px; flex-shrink: 0; border-radius: 14px; border: 2px solid var(--btn-border);
-    background: var(--btn); color: var(--fg); display: flex; align-items: center; justify-content: center;
+    width: 52px; height: 52px; flex-shrink: 0; border-radius: 26px; border: none;
+    background: var(--btn); color: var(--fg2); display: flex; align-items: center; justify-content: center;
     cursor: pointer; touch-action: manipulation; padding: 0;
   }
-  .d-theme svg { width: 28px; height: 28px; }
-  .d-band {
-    border-radius: 18px; padding: 8px 12px;
-    display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-rows: auto auto auto;
-    column-gap: 10px; align-content: center; overflow: hidden;
-  }
-  .d-band .b-word  { grid-column: 1 / span 2; grid-row: 1; font-weight: 700; display: flex; align-items: center; gap: 0.3em; min-width: 0; }
-  .d-band .b-word svg { width: 1em; height: 1em; flex-shrink: 0; display: block; }
-  .d-band .b-word .b-wtext { min-width: 0; flex: 1; }
-  .d-band .b-dist  { grid-column: 1; grid-row: 2; font-weight: 700; }
-  .d-band .b-det   { grid-column: 1; grid-row: 3; }
-  .d-band .b-temp  { grid-column: 2; grid-row: 2 / span 2; font-weight: 700; text-align: right; align-self: center; line-height: 1; }
-  .b-ice   { background: #B3261E; color: #FFF4EF; }
-  .b-warn  { background: #E0A526; color: #1C1500; }
-  .b-ok    { background: #2E5E43; color: #F4F1EA; }
-  .b-none  { background: var(--none-bg); color: var(--none-fg); }
-  .b-empty { background: transparent; border: 2px dashed var(--empty); color: var(--fg2); }
-  .d-meta { text-align: center; color: var(--fg2); }
-  .d-meta.bad { color: var(--bad); font-weight: 700; }
+  .d-theme svg { width: 26px; height: 26px; }
+  .d-meta { flex: 1; min-width: 0; text-align: center; }
+  .d-gps  { flex-shrink: 0; font-weight: 700; white-space: nowrap; }
+  .d-meta.bad, .d-gps.bad { color: var(--bad); font-weight: 700; }
   .d-stop {
-    min-height: 60px; border-radius: 16px; border: 2px solid var(--btn-border);
-    background: var(--btn); color: var(--fg); font-family: inherit; font-weight: 700; font-size: 32px;
+    min-height: 60px; border-radius: 20px; border: none;
+    background: var(--btn); color: var(--fg); font-family: inherit; font-weight: 700; font-size: 26px;
     cursor: pointer; touch-action: manipulation;
   }
 
@@ -355,31 +367,29 @@
 </div>
 
 <div id="drive" role="main" aria-live="polite">
-  <div class="d-top">
-    <div class="d-top-text">
-      <div class="d-dest d-fit" id="d-dest">—</div>
-    </div>
-    <button type="button" class="d-theme" id="d-theme" aria-label="Vaheta heledat ja tumedat"></button>
-  </div>
   <div class="d-band b-empty" id="d-band0">
     <div class="b-word"><span class="b-ico" aria-hidden="true"></span><span class="d-fit b-wtext"></span></div>
-    <div class="b-det d-fit"></div>
     <div class="b-dist d-fit"></div>
+    <div class="b-det d-fit"></div>
     <div class="b-temp d-fit"></div>
   </div>
   <div class="d-band b-empty" id="d-band1">
     <div class="b-word"><span class="b-ico" aria-hidden="true"></span><span class="d-fit b-wtext"></span></div>
-    <div class="b-det d-fit"></div>
     <div class="b-dist d-fit"></div>
+    <div class="b-det d-fit"></div>
     <div class="b-temp d-fit"></div>
   </div>
   <div class="d-band b-empty" id="d-band2">
     <div class="b-word"><span class="b-ico" aria-hidden="true"></span><span class="d-fit b-wtext"></span></div>
-    <div class="b-det d-fit"></div>
     <div class="b-dist d-fit"></div>
+    <div class="b-det d-fit"></div>
     <div class="b-temp d-fit"></div>
   </div>
-  <div class="d-meta d-fit" id="d-meta">Andmed – · GPS …</div>
+  <div class="d-bar">
+    <button type="button" class="d-theme" id="d-theme" aria-label="Vaheta heledat ja tumedat"></button>
+    <div class="d-meta d-fit" id="d-meta">Andmed –</div>
+    <div class="d-gps" id="d-gps">GPS …</div>
+  </div>
   <button type="button" class="d-stop" id="d-stop">Lõpeta</button>
 </div>
 
@@ -1084,52 +1094,62 @@
   }
   function fmtKm(m) { var km = Math.round(m / 1000); return km < 1 ? '&lt;1 km' : km + ' km'; }
 
-  // Band rows: 1) icon + status word  2) distance · ETA  3) station · surface;  temperature on the right
-  function renderBand(el, item, greyReason, isFirstEmpty) {
+  var QUIET_CLASS = { ICE: 'q-ice', CAUTION: 'q-warn', NONE: 'q-none' };
+
+  // One block: status word (if any) / distance · ETA / station · surface;  temperature on the right.
+  // loud = full colour (top block with a hazard or no data); otherwise a quiet outlined row.
+  function renderBand(el, item, opts) {
     var q = function (c) { return el.querySelector(c); };
-    // Sizes follow the band's height so three bands always fit without scrolling
-    var bh = Math.max(60, el.clientHeight - 16);
-    var line = Math.max(18, Math.min(SIZE.MIN, Math.floor(bh / 3.4)));
-    // Temperature stays large but leaves room for the distance line, which matters more
-    var tempPx = Math.max(line, Math.min(56, Math.floor(bh * 0.5)));
-    q('.b-word').style.fontSize = line + 'px';
+    var bh = Math.max(60, el.clientHeight - 24);
+    var big = opts.top;
+    var word = Math.max(16, Math.min(big ? 30 : 22, Math.floor(bh / (big ? 5 : 4.2))));
+    var dist = Math.max(22, Math.min(big ? SIZE.DIST : 44, Math.floor(bh / (big ? 2.6 : 2.6))));
+    var det  = Math.max(16, Math.min(big ? 24 : 20, Math.floor(bh / 5)));
+    var temp = Math.max(dist * 0.8, Math.min(big ? 64 : 40, Math.floor(bh * (big ? 0.42 : 0.4))));
+    q('.b-word').style.fontSize = word + 'px';
 
     if (!item) {
-      el.className = 'd-band b-empty';
-      var ic = q('.b-ico'); ic.innerHTML = ''; ic.dataset.k = '';
-      setFit(q('.b-temp'), '', tempPx, line);
-      setFit(q('.b-dist'), '', line, 18);
-      setFit(q('.b-det'), '', line, 18);
-      setFit(q('.b-wtext'), isFirstEmpty ? 'Rohkem jaamu pole' : '', line, 18);
+      el.className = 'd-band b-empty no-word';
+      ['.b-temp', '.b-dist'].forEach(function (c) { setFit(q(c), '', dist, 16); });
+      setFit(q('.b-det'), opts.firstEmpty ? 'Rohkem jaamu pole' : '', det, 16);
       return;
     }
     var a = item.st.attributes, c = item.c;
-    var level = greyReason ? 'NONE' : c.level;
-    el.className = 'd-band ' + BAND_CLASS[level];
+    var level = opts.grey ? 'NONE' : c.level;
+    var loud = opts.top && level !== 'OK';
+    var cls = 'd-band ' + (loud ? BAND_CLASS[level] : 'b-quiet ' + (QUIET_CLASS[level] || ''));
+    if (level === 'OK') cls += ' no-word';
+    el.className = cls;
+
     var rt = a.road_temp != null ? parseFloat(a.road_temp) : null;
+    setFit(q('.b-temp'), level === 'NONE' ? '—' : fmtTempShort(rt), temp, 20);
 
-    // Right column first, so the left column measures against its final width
-    setFit(q('.b-temp'), level === 'NONE' ? '—' : fmtTempShort(rt), tempPx, line);
+    if (level !== 'OK') {
+      var iconKey = LEVELS[level].icon, ico = q('.b-ico');
+      if (ico.dataset.k !== iconKey) { ico.innerHTML = ICONS[iconKey]; ico.dataset.k = iconKey; }
+      setFit(q('.b-wtext'), BAND_WORD[level], word, 14);
+    }
 
-    var iconKey = LEVELS[level].icon;
-    var ico = q('.b-ico');
-    if (ico.dataset.k !== iconKey) { ico.innerHTML = ICONS[iconKey]; ico.dataset.k = iconKey; }
-    setFit(q('.b-wtext'), BAND_WORD[level], line, 18);
+    var showEta = opts.top && level !== 'NONE';
+    setFit(q('.b-dist'), fmtKm(item.dist) + (showEta && !opts.split ? '' : ''), dist, 20);
 
-    setFit(q('.b-dist'), fmtKm(item.dist) + (level === 'NONE' ? '' : ' · ' + fmtEta(item.dist)), line, 18);
-
-    var name = a.site_name || 'Jaam', what;
-    if (greyReason) what = greyReason;
+    var name = a.site_name || 'Jaam', what = '';
+    if (opts.grey) what = opts.top ? opts.grey : '';   // reason shown once, in the top block
     else if (level === 'NONE') what = a.measurement_time ? 'mõõdetud ' + fmtAge(a.measurement_time) : 'mõõtmised puuduvad';
-    else {
-      var s = String(a.road_status || '').toUpperCase();
+    else if (level !== 'OK') {
+      var st = String(a.road_status || '').toUpperCase();
       var pt = String(a.precipitation_type || '').toUpperCase();
       what = (c.kind === 'precip' || c.frozen) ? precipWord(pt).toLowerCase()
-           : (SURFACE_WORDS[s] || (s ? s.toLowerCase().replace(/_/g, ' ') : 'teekate teadmata'));
+           : (SURFACE_WORDS[st] || (st ? st.toLowerCase().replace(/_/g, ' ') : ''));
     }
-    var det = q('.b-det');
-    setFit(det, esc((name + ' · ' + what).slice(0, 30)), line, 18);
-    if (det.scrollWidth > det.clientWidth + 1) setFit(det, esc(what.slice(0, 30)), line, 18);
+    // Top block: "~9 min · Tõrenurme";  rows: "Kärevere · märg"
+    var parts = [];
+    if (showEta) parts.push(fmtEta(item.dist));
+    parts.push(name);
+    if (what && !(showEta && opts.grey)) parts.push(what);
+    var detEl = q('.b-det');
+    setFit(detEl, esc(parts.join(' · ').slice(0, 30)), det, 15);
+    if (detEl.scrollWidth > detEl.clientWidth + 1) setFit(detEl, esc(parts.slice(0, 2).join(' · ').slice(0, 30)), det, 15);
   }
 
   function evaluate() {
@@ -1138,7 +1158,6 @@
     var gpsLost = !drv.sim && (!drv.lastFixAt || now - drv.lastFixAt > DRIVE.GPS_LOST_MS);
     var dataOld = !lastFetchOk || now - lastFetchOk > DRIVE.DATA_MAX_AGE_MS;
 
-    // Stations ahead (any distance) for the bands; hazards within 30 km for voice
     var upcoming = [], hazards = [];
     routeStations.forEach(function (st) {
       var d = st._along - drv.along;
@@ -1151,40 +1170,43 @@
     });
     hazards.sort(function (a, b) { return a.dist - b.dist; });
 
-    var greyReason = gpsLost ? (drv.lastFixAt ? 'GPS puudub' : 'Ootan GPS-i')
-                   : dataOld ? 'Andmed vananenud' : '';
+    var grey = gpsLost ? (drv.lastFixAt ? 'GPS puudub' : 'Ootan GPS-i')
+             : dataOld ? 'Andmed vananenud' : '';
 
-    // Top bar: destination and km left
-    var left = Math.max(0, currentRoute.total - drv.along);
-    setFit(document.getElementById('d-dest'), esc(currentRoute.destName || 'Sihtpunkt') + ' · ' + fmtKm(left), SIZE.MIN, 20);
-
-    // Three bands, fixed positions
+    // Top block: nearest hazard within 30 km; otherwise the next station (quiet).
+    // Below it: the next stations in road order, quiet, skipping the one already on top.
+    var top = (!grey && hazards[0]) || upcoming[0] || null;
+    var rest = upcoming.filter(function (u) { return u !== top; });
+    var shown = [top, rest[0], rest[1]];
     var firstEmpty = true;
     for (var i = 0; i < 3; i++) {
-      var it = upcoming[i];
-      renderBand(document.getElementById('d-band' + i), it, greyReason, !it && firstEmpty);
+      var it = shown[i];
+      renderBand(document.getElementById('d-band' + i), it, {
+        top: i === 0, grey: grey, firstEmpty: !it && firstEmpty
+      });
       if (!it) firstEmpty = false;
     }
 
-    // Bottom line: one-time notices, otherwise data age + GPS
+    // Bottom line: theme · data age (or a one-time notice) · GPS
     if (drv.notices.length && now >= drv.noticeUntil) {
       drv.currentNotice = drv.notices.shift();
       drv.noticeUntil = now + DRIVE.NOTICE_MS;
     }
-    var metaEl = document.getElementById('d-meta');
+    var metaEl = document.getElementById('d-meta'), gpsEl = document.getElementById('d-gps');
+    var ageMin = lastFetchOk ? Math.floor((now - lastFetchOk) / 60000) : null;
     if (drv.currentNotice && now < drv.noticeUntil) {
       metaEl.classList.remove('bad');
-      setFit(metaEl, esc(drv.currentNotice), SIZE.MIN, 22);
+      setFit(metaEl, esc(drv.currentNotice), 20, 14);
     } else {
       drv.currentNotice = null;
-      var ageMin = lastFetchOk ? Math.floor((now - lastFetchOk) / 60000) : null;
-      var gpsTxt = drv.sim ? 'GPS sim' : (gpsLost ? 'GPS ✕' : 'GPS ✓');
-      metaEl.classList.toggle('bad', gpsLost || dataOld);
-      setFit(metaEl, 'Andmed ' + (ageMin === null ? '–' : ageMin + ' min') + ' · ' + gpsTxt, SIZE.MIN, 22);
+      metaEl.classList.toggle('bad', dataOld);
+      setFit(metaEl, 'Andmed ' + (ageMin === null ? '–' : ageMin + ' min'), 22, 14);
     }
+    gpsEl.classList.toggle('bad', gpsLost);
+    gpsEl.style.fontSize = '20px';
+    gpsEl.textContent = drv.sim ? 'GPS sim' : (gpsLost ? 'GPS ✕' : 'GPS ✓');
 
-    // Voice
-    if (greyReason) {
+    if (grey) {
       if (!drv.dataLostSaid) { say('Teeolu andmed puuduvad.'); drv.dataLostSaid = true; }
     } else {
       drv.dataLostSaid = false;
