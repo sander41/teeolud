@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Teeolud">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAACa0lEQVR42u3csU0DQRBA0cFQDQWQOqIVeiAgpgdaISKlJyQCRIB0gGzNrm9n3k/BdxJ+mjO367u6fTqGtNXBn0BwCA7BITgEh+AQHIJDcAgOCQ7BITgEh+AQHIJDcAgOwSF9d+NPsLdePt5++9HD9REOJv75nTlK4FiDxeZLRhOBYzEWM4n4QLqqjPTjwFFNxlAfcCwvY9wx4aggY9CR4SgiY8Tx4agjI/0scAiOHmMj91xwCI42YyPxjHAIDsHhmpJ4XjgUlux/9P74eupL7p7vXVYkOASH4BAcgmNv/6qc/So49FeTv4mUeF44BIfgcGVJPCMcgqPT8Mg6FxyCo83wSDwLHKV85B4fjjo+0o8MRxEfI455sLASl1heyX0vB00jk2P5+THuOuWxT7G5RXTOGuzX+3r2NnHPBOsyQk4i4mmCTa8ynkOq3e3/8IFUcAgOwSE4BIfgiGILK9Hv2ysmh+AQHIJDcAgOwSE4FB41Ge6PmRyCw2wwY0wOwSE4BIfgEByCQ3AIDsEhwSE4YsCCSJPlFZNDYT9H7PCxTyaH4BAcgkOCQ3AIDsEhOARHrPhttg63UE0OwSE4BIfgEByCQ3AobBMMN8pMDsFhJBg2JofgEByCQ3AIDsEhOASH4JDgUHMco5c/ai+vmBwK+znCY59MDsEhOASH4BAcgkNwCA6pEY45dzkL30s1OQSH4BAcgkNwCA7BobBNMNwxMzkEh0lg6pgcgkNwCA7BITgEh+AQHIJDgkM9ccxf7Ci5vGJyKOznCI99MjkEh+AQHIJDcAgOwSE4pPo4LnVzs95NVZNDcAgOwaEZfQKHhJveXWnDVgAAAABJRU5ErkJggg==">
 <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAACa0lEQVR42u3csU0DQRBA0cFQDQWQOqIVeiAgpgdaISKlJyQCRIB0gGzNrm9n3k/BdxJ+mjO367u6fTqGtNXBn0BwCA7BITgEh+AQHIJDcAgOCQ7BITgEh+AQHIJDcAgOwSF9d+NPsLdePt5++9HD9REOJv75nTlK4FiDxeZLRhOBYzEWM4n4QLqqjPTjwFFNxlAfcCwvY9wx4aggY9CR4SgiY8Tx4agjI/0scAiOHmMj91xwCI42YyPxjHAIDsHhmpJ4XjgUlux/9P74eupL7p7vXVYkOASH4BAcgmNv/6qc/So49FeTv4mUeF44BIfgcGVJPCMcgqPT8Mg6FxyCo83wSDwLHKV85B4fjjo+0o8MRxEfI455sLASl1heyX0vB00jk2P5+THuOuWxT7G5RXTOGuzX+3r2NnHPBOsyQk4i4mmCTa8ynkOq3e3/8IFUcAgOwSE4BIfgiGILK9Hv2ysmh+AQHIJDcAgOwSE4FB41Ge6PmRyCw2wwY0wOwSE4BIfgEByCQ3AIDsEhwSE4YsCCSJPlFZNDYT9H7PCxTyaH4BAcgkOCQ3AIDsEhOARHrPhttg63UE0OwSE4BIfgEByCQ3AobBMMN8pMDsFhJBg2JofgEByCQ3AIDsEhOASH4JDgUHMco5c/ai+vmBwK+znCY59MDsEhOASH4BAcgkNwCA6pEY45dzkL30s1OQSH4BAcgkNwCA7BobBNMNwxMzkEh0lg6pgcgkNwCA7BITgEh+AQHIJDgkM9ccxf7Ci5vGJyKOznCI99MjkEh+AQHIJDcAgOwSE4pPo4LnVzs95NVZNDcAgOwaEZfQKHhJveXWnDVgAAAABJRU5ErkJggg==">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -50,7 +50,9 @@
     background: var(--panel);
     border-bottom: 1px solid var(--border);
     display: flex; align-items: center; gap: 12px;
-    padding: calc(10px + var(--safe-t)) calc(16px + var(--safe-r)) 10px calc(16px + var(--safe-l));
+    padding: 10px calc(16px + var(--safe-r)) 10px calc(16px + var(--safe-l));
+    /* Home-screen app: the status bar text is white, so the strip under it is green */
+    border-top: var(--safe-t) solid var(--accent);
   }
   .logo { font-weight: 800; font-size: 20px; color: var(--accent); }
   .tagline { font-size: 11px; color: var(--muted); display: none; }
@@ -1136,11 +1138,11 @@
     var name = a.site_name || 'Jaam', what = '';
     if (opts.grey) what = opts.top ? opts.grey : '';   // reason shown once, in the top block
     else if (level === 'NONE') what = a.measurement_time ? 'mõõdetud ' + fmtAge(a.measurement_time) : 'mõõtmised puuduvad';
-    else if (level !== 'OK') {
+    else {   // road condition is shown on every block, good ones included
       var st = String(a.road_status || '').toUpperCase();
       var pt = String(a.precipitation_type || '').toUpperCase();
       what = (c.kind === 'precip' || c.frozen) ? precipWord(pt).toLowerCase()
-           : (SURFACE_WORDS[st] || (st ? st.toLowerCase().replace(/_/g, ' ') : ''));
+           : (SURFACE_WORDS[st] || (st ? st.toLowerCase().replace(/_/g, ' ') : 'teekate teadmata'));
     }
     // Top block: "~9 min · Tõrenurme";  rows: "Kärevere · märg"
     var parts = [];
@@ -1303,11 +1305,23 @@
   var SUN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg>';
   var MOON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg>';
   function getTheme() { try { return localStorage.getItem(THEME_KEY) || 'dark'; } catch (e) { return 'dark'; } }
+  var PLAN_THEME_COLOR = '#2a7d3f';
+  var DRIVE_BG = { dark: '#0E1013', light: '#F4F1EA' };
+  // Safari (iOS 26+) tints its own bars from the page background, older Safari and
+  // Chrome from theme-color, so both follow the driving screen while it is open.
+  function setChrome(color) {
+    var root = document.documentElement;
+    root.style.backgroundColor = color || '';
+    document.body.style.backgroundColor = color || '';
+    var m = document.querySelector('meta[name="theme-color"]');
+    if (m) m.setAttribute('content', color || PLAN_THEME_COLOR);
+  }
   function applyTheme(t) {
     var light = t === 'light';
     document.getElementById('drive').classList.toggle('light', light);
     // Shows what you switch TO
     document.getElementById('d-theme').innerHTML = light ? MOON : SUN;
+    if (drv.on) setChrome(DRIVE_BG[light ? 'light' : 'dark']);
   }
   document.getElementById('d-theme').addEventListener('click', function () {
     var t = getTheme() === 'light' ? 'dark' : 'light';
@@ -1395,6 +1409,7 @@
     if (drv.wakeLock) { try { drv.wakeLock.release(); } catch (e) {} drv.wakeLock = null; }
     document.getElementById('drive').classList.remove('on');
     document.body.style.overflow = '';
+    setChrome(null);
   }
 
   driveBtn.addEventListener('click', onDriveTap);
